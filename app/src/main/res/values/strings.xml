@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TiMe</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">TiMe</string>
+    <string name="nav_header_subtitle">Keep track of my time!</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">A button</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_categories">Categories</string>
+    <string name="menu_add_category">Add a category</string>
+    <string name="menu_settings">Settings</string>
+</resources>
