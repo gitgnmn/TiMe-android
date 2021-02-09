@@ -17,9 +17,11 @@
         android:label="@string/menu_categories"
         tools:layout="@layout/fragment_categories" />
 
-    <fragment
+    <activity
         android:id="@+id/nav_settings"
-        android:name="com.kth.id2216.group3.time.ui.settings.SettingsFragment"
+        android:name="com.kth.id2216.group3.time.SettingsActivity"
         android:label="@string/menu_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/activity_settings"/>
+
+
 </navigation>
