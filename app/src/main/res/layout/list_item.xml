@@ -1,23 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="4dp">
 
-    <!--For image src we have used ic_launcher
-        it is used only for reference how it will look"-->
-    <ImageView
-        android:id="@+id/imageView"
+    <ProgressBar
+        android:id="@+id/item_progress"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
-        android:contentDescription="@string/image_description" />
+        android:layout_height="150dp"
+        android:indeterminateOnly="false"
+        android:progressDrawable="@drawable/pb_circular_determinative"
+        android:progress="40"
+        />
 
     <TextView
-        android:layout_below="@id/imageView"
+        android:id="@+id/item_hours"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignTop="@id/item_progress"
+        android:layout_alignBottom="@+id/item_progress"
+        android:layout_marginBottom="0dp"
+        android:gravity="center|center_vertical"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/item_hours_text_size"
+        tools:ignore="RtlCompat"
+        tools:text="@string/item_hours_value" />
+
+    <TextView
+        android:id="@+id/item_goal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Some test text." />
+        android:layout_below="@id/item_progress"
+        android:layout_marginTop="0dp"
+        android:text="@string/timer_item_goal"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_goal"
+        android:layout_marginTop="0dp"
+        android:gravity="center|center_vertical"
+        android:text="@string/timer_item_name"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/item_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_name"
+        android:gravity="center|center_vertical"
+        android:text="@string/timer_item_categories"
+        android:textAlignment="center"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp" />
 
 </RelativeLayout>

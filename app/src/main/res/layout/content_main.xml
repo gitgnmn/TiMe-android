@@ -8,10 +8,10 @@
     tools:showIn="@layout/app_bar_main">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/timerRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_margin="@dimen/card_view_top_padding"/>
 
     <fragment
         android:id="@+id/nav_host_fragment"

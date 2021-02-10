@@ -12,4 +12,8 @@
     <string name="menu_add_category">Add a category</string>
     <string name="menu_settings">Settings</string>
     <string name="image_description">TODO</string>
+    <string name="timer_item_goal">140 h</string>
+    <string name="timer_item_name">The Best Course</string>
+    <string name="item_hours_value">40 h</string>
+    <string name="timer_item_categories">The Best Category</string>
 </resources>

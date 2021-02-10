@@ -20,9 +20,22 @@ import com.google.android.material.snackbar.Snackbar
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
-    private var images = ArrayList(listOf(R.drawable.img_1, R.drawable.img_2))
+    //private var images = ArrayList(listOf(R.drawable.img_1, R.drawable.img_2))
+    private val timer1 = mapOf( "name" to "Best Course Ever",
+                                "goal" to 140,
+                                "hours" to 50,
+                                "categories" to "")
+    private val timer2 = mapOf( "name" to "Example Course",
+                                "goal" to 120,
+                                "hours" to 10,
+                                "categories" to "")
+    private val timer3 = mapOf( "name" to "Design Lab",
+                                "goal" to 20,
+                                "hours" to 2,
+                                "categories" to "Mobile Design")
+    private var timers = ArrayList(listOf(timer1,timer2,timer3))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,16 +59,14 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         // Getting reference of recyclerView
-        val recyclerView : RecyclerView = findViewById(R.id.recyclerView)
+        recyclerView  = findViewById(R.id.timerRecyclerView)
 
         // Setting the layout as Staggered Grid for vertical orientation
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         recyclerView.layoutManager = staggeredGridLayoutManager
 
         // Sending reference and data to Adapter
-        val adapter = Adapter(this@MainActivity, images)
-
-        // Setting Adapter to RecyclerView
+        val adapter = Adapter(this@MainActivity, timers)
         recyclerView.adapter = adapter
     }
 
