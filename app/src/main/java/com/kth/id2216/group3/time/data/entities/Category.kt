@@ -1,6 +1,6 @@
 package com.kth.id2216.group3.time.data.entities
 
-import androidx.annotation.NonNull
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

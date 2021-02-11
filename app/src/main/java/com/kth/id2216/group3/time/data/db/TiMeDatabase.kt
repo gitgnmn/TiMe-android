@@ -23,10 +23,10 @@ abstract class TiMeDatabase : RoomDatabase() {
         val DB_NAME = "time_app_database"
 
         @Volatile
-        private var INSTANCE: RoomDatabase? = null
+        private var INSTANCE: TiMeDatabase? = null
 
         //singleton pattern to ensure that the DB is instantiated only once
-        fun getDatabase(context: Context): RoomDatabase {
+        fun getDatabase(context: Context): TiMeDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null)
                 return tempInstance
