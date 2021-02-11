@@ -10,26 +10,26 @@ import com.kth.id2216.group3.time.data.entities.TimerWithSessions
 /*
 Repository
  */
-class TiMeRepository(private val timerDAO: TimerDAO) {
+class TimerRepository(private val timerDAO: TimerDAO) {
 
     //// Timer /////
 
-    fun getAllTimer(): LiveData<List<Timer>> =
+    fun getAll(): LiveData<List<Timer>> =
             timerDAO.getAll()
 
-    fun getAllTimersWithSessions(): LiveData<List<TimerWithSessions>> =
+    fun getAllWithSessions(): LiveData<List<TimerWithSessions>> =
             timerDAO.getAllWithSessions()
 
-    fun loadAllTimersByIds(timersIds: IntArray): LiveData<List<Timer>> =
+    fun loadAllByIds(timersIds: IntArray): LiveData<List<Timer>> =
             timerDAO.loadAllByIds(timersIds)
 
-    fun insertAllTimers(vararg timers: Timer) =
+    fun insertAll(vararg timers: Timer) =
             timerDAO.insertAll(*timers)
 
-    fun insertTimer(timer: Timer) =
+    fun insert(timer: Timer) =
             timerDAO.insert(timer)
 
-    fun deleteTimer(timer: Timer) =
+    fun delete(timer: Timer) =
             timerDAO.delete(timer)
 
     //// Categories ////
