@@ -16,13 +16,13 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.kth.id2216.group3.time.adapters.Adapter
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var recyclerView: RecyclerView
 
-    //private var images = ArrayList(listOf(R.drawable.img_1, R.drawable.img_2))
     private val timer1 = mapOf( "name" to "Best Course Ever",
                                 "goal" to 140,
                                 "hours" to 50,

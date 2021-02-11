@@ -1,4 +1,4 @@
-package com.kth.id2216.group3.time
+package com.kth.id2216.group3.time.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.kth.id2216.group3.time.R
 
 // Extends the Adapter class to RecyclerView.Adapter
 // and implement the unimplemented methods
