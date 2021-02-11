@@ -8,8 +8,6 @@ import androidx.room.PrimaryKey
 data class Category (
         @PrimaryKey(autoGenerate = true)
         var id: Int,
-        @NonNull
-        var name: String?,
-        val created: Long = System.currentTimeMillis()
-        //var timers: List<Int> // name, id
+        var name: String,
+        val created: Long? = System.currentTimeMillis()
 )
