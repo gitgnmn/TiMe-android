@@ -1,7 +1,6 @@
 package com.kth.id2216.group3.time.data.entities
 
 
-import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -23,5 +22,5 @@ data class Timer(
         @ColumnInfo(name = "last_used")
         var lastUsed: Long = created,
         var goal: Int = 0,
-        var minutes: Int = 0
+        var hours: Int = 0
 )

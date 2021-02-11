@@ -1,10 +1,9 @@
 package com.kth.id2216.group3.time.data.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.kth.id2216.group3.time.data.entities.Category
 import com.kth.id2216.group3.time.data.entities.Timer
 import com.kth.id2216.group3.time.data.entities.TimerWithSessions
+import kotlinx.coroutines.flow.Flow
 
 /*
 Data access object for timers
@@ -12,14 +11,14 @@ Data access object for timers
 @Dao
 interface TimerDAO {
     @Query("SELECT * FROM timer_table ORDER BY created ASC")
-    fun getAll(): LiveData<List<Timer>>
+    fun getAll(): Flow<List<Timer>>
 
     @Transaction
     @Query("SELECT * FROM timer_table")
-    fun getAllWithSessions(): LiveData<List<TimerWithSessions>>
+    fun getAllWithSessions(): Flow<List<TimerWithSessions>>
 
     @Query("SELECT * FROM timer_table WHERE id IN (:timersIds)")
-    fun loadAllByIds(timersIds: IntArray): LiveData<List<Timer>>
+    fun loadAllByIds(timersIds: IntArray): Flow<List<Timer>>
 
     @Insert
     fun insertAll(vararg timers: Timer)
