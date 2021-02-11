@@ -1,12 +1,8 @@
 package com.kth.id2216.group3.time.data.repositories
 
-import androidx.lifecycle.LiveData
+
 import com.kth.id2216.group3.time.data.dao.TimerDAO
-import com.kth.id2216.group3.time.data.dao.CategoryDAO
-import com.kth.id2216.group3.time.data.entities.Category
 import com.kth.id2216.group3.time.data.entities.Timer
-import com.kth.id2216.group3.time.data.entities.TimerWithSessions
-import dagger.hilt.InstallIn
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -17,15 +13,13 @@ Repository
 @Singleton
 class TimerRepository @Inject constructor(private val timerDAO: TimerDAO) {
 
-    //// Timer /////
-
-    suspend fun getAll(): LiveData<List<Timer>> =
+    fun getAll() =
             timerDAO.getAll()
 
-    suspend fun getAllWithSessions(): LiveData<List<TimerWithSessions>> =
+    fun getAllWithSessions() =
             timerDAO.getAllWithSessions()
 
-    fun loadAllByIds(timersIds: IntArray): LiveData<List<Timer>> =
+    fun loadAllByIds(timersIds: IntArray) =
             timerDAO.loadAllByIds(timersIds)
 
     fun insertAll(vararg timers: Timer) =
@@ -37,5 +31,4 @@ class TimerRepository @Inject constructor(private val timerDAO: TimerDAO) {
     fun delete(timer: Timer) =
             timerDAO.delete(timer)
 
-    //// Categories ////
 }

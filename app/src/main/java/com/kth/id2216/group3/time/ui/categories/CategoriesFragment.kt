@@ -25,10 +25,7 @@ class CategoriesFragment : Fragment() {
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_categories, container, false)
-        val textView: TextView = root.findViewById(R.id.text_gallery)
-        categoriesViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+
         return root
     }
 }

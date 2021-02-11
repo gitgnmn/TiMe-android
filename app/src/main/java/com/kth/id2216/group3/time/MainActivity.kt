@@ -60,16 +60,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        // Getting reference of recyclerView
-        recyclerView  = findViewById(R.id.timerRecyclerView)
 
-        // Setting the layout as Staggered Grid for vertical orientation
-        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-        recyclerView.layoutManager = staggeredGridLayoutManager
-
-        // Sending reference and data to Adapter
-        val adapter = Adapter(this@MainActivity, timers)
-        recyclerView.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -10,26 +10,38 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.kth.id2216.group3.time.R
+import com.kth.id2216.group3.time.adapters.Adapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModels()
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-//        homeViewModel =
-//                ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(HomeViewModel::class.java)
+
+        val timers = homeViewModel.timers
+
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        //val textView: TextView = root.findViewById(R.id.text_home)
-        //homeViewModel.text.observe(viewLifecycleOwner, Observer {
-        //    textView.text = it
-        //})
+
+        recyclerView  = root.findViewById(R.id.timerRecyclerView)
+
+        // Setting the layout as Staggered Grid for vertical orientation
+        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        recyclerView.layoutManager = staggeredGridLayoutManager
+
+        // Sending reference and data to Adapter
+        val adapter = Adapter(context, timers)
+        recyclerView.adapter = adapter
         return root
     }
 }
