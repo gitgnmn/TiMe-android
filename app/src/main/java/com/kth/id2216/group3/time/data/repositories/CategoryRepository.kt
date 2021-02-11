@@ -5,6 +5,9 @@ import com.kth.id2216.group3.time.data.entities.Category
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+Repository for the [Category] class
+ */
 @Singleton
 class CategoryRepository @Inject constructor(private val categoryDAO: CategoryDAO) {
 

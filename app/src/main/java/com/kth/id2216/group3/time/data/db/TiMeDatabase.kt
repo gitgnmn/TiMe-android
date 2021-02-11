@@ -12,6 +12,9 @@ import com.kth.id2216.group3.time.data.entities.Session
 import com.kth.id2216.group3.time.data.entities.Timer
 import com.kth.id2216.group3.time.data.util.Converters
 
+/**
+ * Handle the database singleton
+ */
 @Database(entities = [Timer::class, Session::class, Category::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class TiMeDatabase : RoomDatabase() {

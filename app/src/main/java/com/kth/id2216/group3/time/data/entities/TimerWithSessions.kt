@@ -3,8 +3,8 @@ package com.kth.id2216.group3.time.data.entities
 import androidx.room.Embedded
 import androidx.room.Relation
 
-/*
-Data class able to link timers and sessions
+/**
+ * Data class able to link [Timer] and its multiple [Session]
  */
 data class TimerWithSessions(
         @Embedded

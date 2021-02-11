@@ -19,6 +19,10 @@ import com.google.android.material.snackbar.Snackbar
 import com.kth.id2216.group3.time.adapters.Adapter
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Activity handling the main part of the app
+ * Contains several fragments : [CategoryFragment], [CreateTimerFragment], [CategoriesFragment]
+ */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 

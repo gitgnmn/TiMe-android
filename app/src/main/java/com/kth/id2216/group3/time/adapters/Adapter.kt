@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kth.id2216.group3.time.R
 import com.kth.id2216.group3.time.data.entities.Timer
 
-// Extends the Adapter class to RecyclerView.Adapter
-// and implement the unimplemented methods
+/**
+ * Extends the [Adapter] class to [RecyclerView.Adapter]
+    and implement the unimplemented methods
+ */
 class Adapter // Constructor for initialization
 (var context: Context?, var timers: LiveData<List<Timer>>) : RecyclerView.Adapter<Adapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,7 +27,7 @@ class Adapter // Constructor for initialization
 
     // Binding data to the into specified position
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // TypeCast Object to int type
+        //necessary check that the timers array is not null
         if (timers.value != null) {
             val name = timers.value!![position].name
             val goal = timers.value!![position].goal
@@ -60,8 +62,10 @@ class Adapter // Constructor for initialization
 
     }
 
+    /**
+     * Returns number of items currently available in Adapter
+     */
     override fun getItemCount(): Int {
-        // Returns number of items currently available in Adapter
         if (timers.value == null) {
             return 0
         }
