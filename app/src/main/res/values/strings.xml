@@ -16,4 +16,7 @@
     <string name="timer_item_name">The Best Course</string>
     <string name="item_hours_value">40 h</string>
     <string name="timer_item_categories">The Best Category</string>
+    <string name="create_timer_button">Create</string>
+    <string name="create_timer_goal_hint">Goal in hours</string>
+    <string name="create_timer_name_hint">Name of new timer</string>
 </resources>

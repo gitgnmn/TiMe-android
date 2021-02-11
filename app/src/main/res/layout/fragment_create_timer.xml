@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#83000000"
+    android:gravity="center|top"
+    tools:context=".CreateTimerFragment" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/create_timer_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:hint="@string/create_timer_name_hint"
+            android:inputType="text"
+            android:textColor="@android:color/darker_gray"
+            android:importantForAutofill="no" />
+
+        <EditText
+            android:id="@+id/create_timer_goal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:inputType="number"
+            android:hint="@string/create_timer_goal_hint"
+            android:textColor="@android:color/darker_gray"
+            android:importantForAutofill="no" />
+
+        <Button
+            android:id="@+id/create_timer_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center|center_vertical"
+            android:text="@string/create_timer_button" />
+
+    </LinearLayout>
+</LinearLayout>
