@@ -6,18 +6,23 @@ import com.kth.id2216.group3.time.data.dao.CategoryDAO
 import com.kth.id2216.group3.time.data.entities.Category
 import com.kth.id2216.group3.time.data.entities.Timer
 import com.kth.id2216.group3.time.data.entities.TimerWithSessions
+import dagger.hilt.InstallIn
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /*
 Repository
  */
-class TimerRepository(private val timerDAO: TimerDAO) {
+
+@Singleton
+class TimerRepository @Inject constructor(private val timerDAO: TimerDAO) {
 
     //// Timer /////
 
-    fun getAll(): LiveData<List<Timer>> =
+    suspend fun getAll(): LiveData<List<Timer>> =
             timerDAO.getAll()
 
-    fun getAllWithSessions(): LiveData<List<TimerWithSessions>> =
+    suspend fun getAllWithSessions(): LiveData<List<TimerWithSessions>> =
             timerDAO.getAllWithSessions()
 
     fun loadAllByIds(timersIds: IntArray): LiveData<List<Timer>> =
