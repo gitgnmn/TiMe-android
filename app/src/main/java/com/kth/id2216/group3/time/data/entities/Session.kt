@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * Represents a session of a timer
+ */
 @Entity(tableName = "session_table")
 data class Session(
         @PrimaryKey
@@ -11,5 +14,5 @@ data class Session(
         @ColumnInfo(name = "timer_id")
         val timerId: Int,
         @ColumnInfo(name = "duration")
-        var duration: Int
+        var duration: Int = 0
 )

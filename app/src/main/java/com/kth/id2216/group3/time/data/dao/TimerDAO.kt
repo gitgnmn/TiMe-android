@@ -5,9 +5,9 @@ import com.kth.id2216.group3.time.data.entities.Timer
 import com.kth.id2216.group3.time.data.entities.TimerWithSessions
 import kotlinx.coroutines.flow.Flow
 
-/*
-Data access object for timers
- */
+/**
+Data Access Object for [Timer] class
+ **/
 @Dao
 interface TimerDAO {
     @Query("SELECT * FROM timer_table ORDER BY created ASC")

@@ -6,10 +6,9 @@ import com.kth.id2216.group3.time.data.entities.Timer
 import javax.inject.Inject
 import javax.inject.Singleton
 
-/*
-Repository
+/**
+Repository for the [Timer] class
  */
-
 @Singleton
 class TimerRepository @Inject constructor(private val timerDAO: TimerDAO) {
 

@@ -1,4 +1,4 @@
-package com.kth.id2216.group3.time
+package com.kth.id2216.group3.time.ui.createtimer
 
 import android.os.Bundle
 import android.view.LayoutInflater

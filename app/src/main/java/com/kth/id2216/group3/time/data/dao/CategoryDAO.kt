@@ -1,12 +1,13 @@
 package com.kth.id2216.group3.time.data.dao
 
-import androidx.lifecycle.LiveData
-
 import androidx.room.*
 import com.kth.id2216.group3.time.data.entities.Category
 import com.kth.id2216.group3.time.data.entities.CategoryWithTimers
 import kotlinx.coroutines.flow.Flow
 
+/**
+    Data Access Object for [Category] class
+ **/
 @Dao
 interface CategoryDAO {
     @Query("SELECT * FROM category_table ORDER BY created ASC")

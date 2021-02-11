@@ -6,7 +6,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.kth.id2216.group3.time.data.util.TimerState
 
-
+/**
+ * Represents a timer
+ */
 @Entity(tableName = "timer_table")
 data class Timer(
         @PrimaryKey
@@ -16,7 +18,7 @@ data class Timer(
         @ColumnInfo(name="category_id")
         var categoryId: Int,
         @ColumnInfo(name="state")
-        var state: TimerState,
+        var state: TimerState = TimerState.STOPPED,
         @ColumnInfo(name="created")
         val created: Long = System.currentTimeMillis(),
         @ColumnInfo(name = "last_used")
