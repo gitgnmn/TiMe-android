@@ -10,9 +10,14 @@ import com.kth.id2216.group3.time.data.dao.TimerDAO
 import com.kth.id2216.group3.time.data.db.TiMeDatabase
 import com.kth.id2216.group3.time.data.entities.Timer
 import com.kth.id2216.group3.time.data.repositories.TimerRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-
-class HomeViewModel: ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    timerRepository: TimerRepository
+)
+: ViewModel() {
 
 //    private val timerRepository: TimerRepository
 //    private val timers: LiveData<List<Timer>>

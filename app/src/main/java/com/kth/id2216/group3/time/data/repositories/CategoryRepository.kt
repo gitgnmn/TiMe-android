@@ -5,8 +5,11 @@ import com.kth.id2216.group3.time.data.dao.CategoryDAO
 import com.kth.id2216.group3.time.data.entities.Category
 
 import com.kth.id2216.group3.time.data.entities.CategoryWithTimers
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class CategoryRepository(private val categoryDAO: CategoryDAO) {
+@Singleton
+class CategoryRepository @Inject constructor(private val categoryDAO: CategoryDAO) {
 
     fun getAll(): LiveData<List<Category>> =
             categoryDAO.getAll()
