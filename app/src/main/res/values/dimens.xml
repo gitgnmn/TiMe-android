@@ -5,6 +5,6 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="card_view_top_padding">10dp</dimen>
+    <dimen name="card_view_padding">10dp</dimen>
     <dimen name="item_hours_text_size">20sp</dimen>
 </resources>

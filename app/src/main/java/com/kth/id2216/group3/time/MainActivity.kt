@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var recyclerView: RecyclerView
 
-    //private var images = ArrayList(listOf(R.drawable.img_1, R.drawable.img_2))
     private val timer1 = mapOf( "name" to "Best Course Ever",
                                 "goal" to 140,
                                 "hours" to 50,

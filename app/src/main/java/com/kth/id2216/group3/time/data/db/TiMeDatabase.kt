@@ -5,16 +5,19 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.kth.id2216.group3.time.data.dao.CategoryDAO
 import com.kth.id2216.group3.time.data.dao.TimerDAO
+import com.kth.id2216.group3.time.data.entities.Category
 import com.kth.id2216.group3.time.data.entities.Session
 import com.kth.id2216.group3.time.data.entities.Timer
 import com.kth.id2216.group3.time.data.util.Converters
 
-@Database(entities = [Timer::class, Session::class], version = 1)
+@Database(entities = [Timer::class, Session::class, Category::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class TiMeDatabase : RoomDatabase() {
 
     abstract fun timerDAO(): TimerDAO
+    abstract fun categoryDAO(): CategoryDAO
 
     companion object {
         val DB_NAME = "time_app_database"
@@ -33,6 +36,7 @@ abstract class TiMeDatabase : RoomDatabase() {
                         context.applicationContext,
                         TiMeDatabase::class.java,
                         DB_NAME
+                ).fallbackToDestructiveMigration(
                 ).build()
                 INSTANCE = instance
                 return instance
