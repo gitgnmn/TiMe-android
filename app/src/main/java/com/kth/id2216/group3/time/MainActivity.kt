@@ -10,18 +10,14 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
-import com.kth.id2216.group3.time.adapters.Adapter
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Activity handling the main part of the app
- * Contains several fragments : [CategoryFragment], [CreateTimerFragment], [CategoriesFragment]
+ * Contains several fragments : [.CategoryFragment], [.CreateTimerFragment], [.CategoriesFragment]
  */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
