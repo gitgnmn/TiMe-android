@@ -20,8 +20,8 @@ class CategoryRepository @Inject constructor(private val categoryDAO: CategoryDA
     fun loadAllByIds(categoriesIds: IntArray) =
             categoryDAO.loadAllByIds(categoriesIds)
 
-    fun insertAll(vararg categories: Category) =
-            categoryDAO.insertAll(*categories)
+    fun insertAll(categories: List<Category>) =
+            categoryDAO.insertAll(categories)
 
     fun insert(timer: Category) =
             categoryDAO.insert(timer)
