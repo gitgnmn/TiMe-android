@@ -14,11 +14,11 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    timerRepository: TimerRepository
+    private val timerRepository: TimerRepository
 )
 : ViewModel() {
-    val timerRepository = timerRepository
-
     val timers: LiveData<List<Timer>> = timerRepository.getAll().asLiveData()
 
+    fun insertTimer(timer: Timer) { timerRepository.insert(timer) }
+    fun insertTimerList(timerList : List<Timer>) {timerRepository.insertAll(timerList)}
 }
