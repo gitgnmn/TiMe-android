@@ -21,7 +21,7 @@ interface CategoryDAO {
     fun loadAllByIds(categoriesIds: IntArray): Flow<List<Category>>
 
     @Insert
-    fun insertAll(vararg categories: Category)
+    fun insertAll(categories: List<Category>)
     
     @Insert
     fun insert(category: Category)

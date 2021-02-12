@@ -21,7 +21,7 @@ interface TimerDAO {
     fun loadAllByIds(timersIds: IntArray): Flow<List<Timer>>
 
     @Insert
-    fun insertAll(vararg timers: Timer)
+    fun insertAll(timers: List<Timer>)
 
     @Insert
     fun insert(timer: Timer)

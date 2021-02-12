@@ -16,7 +16,7 @@ data class Timer(
         @ColumnInfo(name="name")
         var name: String,
         @ColumnInfo(name="category_id")
-        var categoryId: Int,
+        var categoryId: Int?,
         @ColumnInfo(name="state")
         var state: TimerState = TimerState.STOPPED,
         @ColumnInfo(name="created")
