@@ -16,7 +16,7 @@ import com.kth.id2216.group3.time.data.entities.Timer
     and implement the unimplemented methods
  */
 class Adapter // Constructor for initialization
-(var context: Context?, var timers: LiveData<List<Timer>>) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+(var context: Context?, private var timers: LiveData<List<Timer>>) : RecyclerView.Adapter<Adapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Inflating the Layout(Instantiates list_item.xml layout file into View object)
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -57,9 +57,6 @@ class Adapter // Constructor for initialization
                 holder.pbar.progress = 0
             }
         }
-
-
-
     }
 
     /**

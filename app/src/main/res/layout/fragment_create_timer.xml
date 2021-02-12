@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#83000000"
     android:gravity="center|top"
-    tools:context=".CreateTimerFragment" >
+    tools:context=".ui.createtimer.CreateTimerFragment" >
 
     <LinearLayout
         android:layout_width="match_parent"

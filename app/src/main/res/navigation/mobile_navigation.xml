@@ -24,7 +24,7 @@
         tools:layout="@layout/activity_settings"/>
     <fragment
         android:id="@+id/createTimer"
-        android:name="com.kth.id2216.group3.time.CreateTimerFragment"
+        android:name="com.kth.id2216.group3.time.ui.createtimer.CreateTimerFragment"
         android:label="Create Timer"
         tools:layout="@layout/fragment_create_timer" />
 

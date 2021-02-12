@@ -29,20 +29,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var recyclerView: RecyclerView
 
-    private val timer1 = mapOf( "name" to "Best Course Ever",
-                                "goal" to 140,
-                                "hours" to 50,
-                                "categories" to "")
-    private val timer2 = mapOf( "name" to "Example Course",
-                                "goal" to 120,
-                                "hours" to 10,
-                                "categories" to "")
-    private val timer3 = mapOf( "name" to "Design Lab",
-                                "goal" to 20,
-                                "hours" to 2,
-                                "categories" to "Mobile Design")
-    private var timers = ArrayList(listOf(timer1,timer2,timer3))
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
