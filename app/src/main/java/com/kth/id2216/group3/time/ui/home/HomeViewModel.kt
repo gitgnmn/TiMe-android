@@ -17,6 +17,7 @@ class HomeViewModel @Inject constructor(
     timerRepository: TimerRepository
 )
 : ViewModel() {
+    val timerRepository = timerRepository
 
     val timers: LiveData<List<Timer>> = timerRepository.getAll().asLiveData()
 

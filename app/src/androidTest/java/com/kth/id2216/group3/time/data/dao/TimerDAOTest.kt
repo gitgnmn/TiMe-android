@@ -1,5 +1,7 @@
 package com.kth.id2216.group3.time.data.dao
 
+import android.util.Log
+import android.util.LogPrinter
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.room.Room
@@ -20,8 +22,8 @@ class TimerDAOTest {
 
     private lateinit var tiMeDatabase: TiMeDatabase
     private lateinit var timerDAO: TimerDAO
-    private val timerA = Timer(id = 0, name = "A", categoryId = 0)
-    private val timerB = Timer(id = 1, name = "B", categoryId = 0)
+    private val timerA = Timer(name = "A")
+    private val timerB = Timer(name = "B")
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -44,6 +46,8 @@ class TimerDAOTest {
     @Test
     fun getAll() = runBlocking {
         val timerList = timerDAO.getAll().first()
+        Log.i("Timer 1",timerList.first().toString())
+        Log.i("Timer 2", timerList[1].toString())
 
         assertEquals(2, timerList.size)
     }
