@@ -25,4 +25,16 @@ data class Timer(
         var lastUsed: Long = created,
         var goal: Int = 0,
         var hours: Int = 0
-)
+) {
+        fun getGoalFormatted(): String {
+                val goalM = goal%1
+                val goalH = goal - goalM
+                return "$goalH h $goalM m"
+        }
+
+        fun getHoursFormatted(): String {
+                val hoursM = hours % 1
+                val hoursH = hours - hoursM
+                return "$hoursH h $hoursM m"
+        }
+}

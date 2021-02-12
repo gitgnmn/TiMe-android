@@ -23,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var recyclerView: RecyclerView
+    //private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,9 +52,6 @@ class MainActivity : AppCompatActivity() {
             else
                 fab.show()
         }
-
-        // Getting reference of recyclerView
-        recyclerView  = findViewById(R.id.timerRecyclerView)
 
 
     }

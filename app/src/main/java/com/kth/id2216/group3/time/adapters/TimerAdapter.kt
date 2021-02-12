@@ -12,15 +12,19 @@ import com.kth.id2216.group3.time.R
 import com.kth.id2216.group3.time.data.entities.Timer
 
 /**
- * Extends the [Adapter] class to [RecyclerView.Adapter]
+ * Extends the [TimerAdapter] class to [RecyclerView.Adapter]
     and implement the unimplemented methods
  */
-class Adapter // Constructor for initialization
-(var context: Context?, private var timers: LiveData<List<Timer>>) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+class TimerAdapter(
+    var context: Context?,
+    private var timers: LiveData<List<Timer>>
+    ) : RecyclerView.Adapter<TimerAdapter.ViewHolder>() {
+
+    private val inflater = LayoutInflater.from(context)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Inflating the Layout(Instantiates list_item.xml layout file into View object)
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-
+        val view = inflater.inflate(R.layout.list_item, parent, false)
         // Passing view to ViewHolder
         return ViewHolder(view)
     }
@@ -29,23 +33,19 @@ class Adapter // Constructor for initialization
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //necessary check that the timers array is not null
         if (timers.value != null) {
-            val name = timers.value!![position].name
+
+            holder.name.text = timers.value!![position].name
+            holder.goal.text = timers.value!![position].getGoalFormatted()
+            holder.hours.text = timers.value!![position].getHoursFormatted()
+            if (timers.value!![position].categoryId != -1) {
+                holder.categories.text = timers.value!![position].categoryId.toString()
+            } else {
+                holder.categories.text = ""
+            }
+
+
             val goal = timers.value!![position].goal
             val hours = timers.value!![position].hours
-            val categoryId = timers.value!![position].categoryId
-
-            val goalM = goal%1
-            val goalH = goal - goalM
-            val goalText = "$goalH h $goalM m"
-
-            val hoursM = hours%1
-            val hoursH = hours - hoursM
-            val hoursText = "$hoursH h $hoursM m"
-
-            holder.name.text = name
-            holder.goal.text = goalText
-            holder.hours.text = hoursText
-            holder.categories.text = categoryId.toString()
 
             if (goal != 0) {
                 val g = goal.toDouble()
@@ -71,19 +71,12 @@ class Adapter // Constructor for initialization
 
     // Initializing the Views
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var name: TextView
-        var goal: TextView
-        var hours: TextView
-        var categories: TextView
-        var pbar: ProgressBar
+        var name: TextView = view.findViewById<View>(R.id.item_name) as TextView
+        var goal: TextView = view.findViewById<View>(R.id.item_goal) as TextView
+        var hours: TextView = view.findViewById<View>(R.id.item_hours) as TextView
+        var categories: TextView = view.findViewById<View>(R.id.item_categories) as TextView
+        var pbar: ProgressBar = view.findViewById<View>(R.id.item_progress) as ProgressBar
 
-        init {
-            name = view.findViewById<View>(R.id.item_name) as TextView
-            goal = view.findViewById<View>(R.id.item_goal) as TextView
-            hours = view.findViewById<View>(R.id.item_hours) as TextView
-            categories = view.findViewById<View>(R.id.item_categories) as TextView
-            pbar = view.findViewById<View>(R.id.item_progress) as ProgressBar
-        }
     }
 
 }
