@@ -73,6 +73,8 @@ dependencies {
 
     // Testing dependencies
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$rootProject.hilt_version"
+    androidTestImplementation "androidx.test:runner:$rootProject.androidx_test_version"
+    androidTestImplementation "androidx.test:rules:$rootProject.androidx_test_version"
     androidTestImplementation "androidx.test.ext:junit:$rootProject.ext_junit_version"
     androidTestImplementation "androidx.test.ext:junit:$rootProject.ext_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espresso_version"
