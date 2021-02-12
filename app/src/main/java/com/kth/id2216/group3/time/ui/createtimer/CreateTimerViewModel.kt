@@ -1,5 +1,4 @@
-package com.kth.id2216.group3.time.ui.home
-
+package com.kth.id2216.group3.time.ui.createtimer
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -11,14 +10,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/**
- * ViewModel of the [HomeFragment]
- */
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class CreateTimerViewModel @Inject constructor(
     private val timerRepository: TimerRepository
 )
-: ViewModel() {
+    : ViewModel() {
 
     val timers: LiveData<List<Timer>> = timerRepository.getAll().asLiveData()
 
@@ -27,13 +23,4 @@ class HomeViewModel @Inject constructor(
             timerRepository.insert(timer)
         }
     }
-
-    fun getAllTimers(): LiveData<List<Timer>> {
-        viewModelScope.launch {
-            val timers = timerRepository.getAll().asLiveData()
-        }
-        return timers
-    }
-
-
 }

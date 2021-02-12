@@ -5,7 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.kth.id2216.group3.time.R
+import com.kth.id2216.group3.time.ui.home.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,7 +21,11 @@ private const val ARG_PARAM2 = "param2"
  * Use the [CreateTimerFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CreateTimerFragment : androidx.fragment.app.Fragment() {
+@AndroidEntryPoint
+class CreateTimerFragment : Fragment() {
+
+    private val createTimerViewModel: CreateTimerViewModel by viewModels()
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -57,4 +65,7 @@ class CreateTimerFragment : androidx.fragment.app.Fragment() {
                 }
             }
     }
+
+
+
 }

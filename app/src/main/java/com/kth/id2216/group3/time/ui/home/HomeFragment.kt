@@ -33,14 +33,14 @@ class HomeFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         // Insert example data
-        val timer1 = Timer(name = "Best Course Ever",goal = 140)
-        val timer2 = Timer(name = "Example Course",goal = 120, hours = 10)
-        val timer3 = Timer(name = "Best Course Ever",goal = 20, hours = 2)
-        //homeViewModel.timerRepository.insertAll(listOf(timer1, timer2, timer3))
-        //homeViewModel.timerRepository.insert(timer1)
+        val timer1 = Timer(id = 1, name = "Best Course Ever",goal = 140)
+        val timer2 = Timer(id = 2, name = "Example Course",goal = 120, hours = 10)
+        val timer3 = Timer(id = 3, name = "Best Course Ever",goal = 20, hours = 2)
+        homeViewModel.addTimer(timer1)
+        homeViewModel.addTimer(timer2)
+        homeViewModel.addTimer(timer3)
 
-
-        val timers = homeViewModel.timers
+        val timers = homeViewModel.getAllTimers()
 
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
@@ -55,4 +55,5 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = adapter
         return root
     }
+
 }

@@ -20,15 +20,15 @@ interface CategoryDAO {
     @Query("SELECT * FROM category_table WHERE id IN (:categoriesIds)")
     fun loadAllByIds(categoriesIds: IntArray): Flow<List<Category>>
 
-    @Insert
-    fun insertAll(categories: List<Category>)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(categories: List<Category>)
     
-    @Insert
-    fun insert(category: Category)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(category: Category)
 
     @Delete
-    fun delete(category: Category)
+    suspend fun delete(category: Category)
 
     @Query("DELETE FROM category_table")
-    fun deleteAll()
+    suspend fun deleteAll()
 }
