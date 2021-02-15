@@ -16,11 +16,16 @@ import com.kth.id2216.group3.time.data.entities.Timer
     and implement the unimplemented methods
  */
 class TimerAdapter(
-    var context: Context?,
-    private var timers: LiveData<List<Timer>>
+    var context: Context?
     ) : RecyclerView.Adapter<TimerAdapter.ViewHolder>() {
 
     private val inflater = LayoutInflater.from(context)
+    private var timers: List<Timer>? = null
+
+    fun setTimers(timers: List<Timer>) {
+        this.timers = timers
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Inflating the Layout(Instantiates list_item.xml layout file into View object)
@@ -32,20 +37,20 @@ class TimerAdapter(
     // Binding data to the into specified position
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //necessary check that the timers array is not null
-        if (timers.value != null) {
+        if (timers != null) {
 
-            holder.name.text = timers.value!![position].name
-            holder.goal.text = timers.value!![position].getGoalFormatted()
-            holder.hours.text = timers.value!![position].getHoursFormatted()
-            if (timers.value!![position].categoryId != -1) {
-                holder.categories.text = timers.value!![position].categoryId.toString()
+            holder.name.text = timers!![position].name
+            holder.goal.text = timers!![position].getGoalFormatted()
+            holder.hours.text = timers!![position].getHoursFormatted()
+            if (timers!![position].categoryId != -1) {
+                holder.categories.text = timers!![position].categoryId.toString()
             } else {
                 holder.categories.text = ""
             }
 
 
-            val goal = timers.value!![position].goal
-            val hours = timers.value!![position].hours
+            val goal = timers!![position].goal
+            val hours = timers!![position].hours
 
             if (goal != 0) {
                 val g = goal.toDouble()
@@ -63,10 +68,10 @@ class TimerAdapter(
      * Returns number of items currently available in Adapter
      */
     override fun getItemCount(): Int {
-        if (timers.value == null) {
+        if (timers == null) {
             return 0
         }
-        return timers.value!!.size
+        return timers!!.size
     }
 
     // Initializing the Views
