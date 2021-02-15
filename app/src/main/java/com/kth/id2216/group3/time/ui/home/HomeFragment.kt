@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
         val adapter = TimerAdapter(context)
         //get data
         homeViewModel.getAllTimers().observe(viewLifecycleOwner, Observer<List<Timer>>() { timers ->
-                adapter.setTimers(timers)
+                adapter.timers = timers
         })
 
         homeViewModel.addTimer(timer1)

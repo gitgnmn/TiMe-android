@@ -20,12 +20,12 @@ class TimerAdapter(
     ) : RecyclerView.Adapter<TimerAdapter.ViewHolder>() {
 
     private val inflater = LayoutInflater.from(context)
-    private var timers: List<Timer>? = null
+    var timers: List<Timer>? = null
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
-    fun setTimers(timers: List<Timer>) {
-        this.timers = timers
-        notifyDataSetChanged()
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Inflating the Layout(Instantiates list_item.xml layout file into View object)
