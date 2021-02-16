@@ -12,4 +12,6 @@
     <color name="colorAccent">@color/teal_200</color>
     <color name="colorBackground">@color/white</color>
     <color name="homeview_card_bg">#E0F7FA</color>
+    <color name="item_button_start">#9CCC65</color>
+    <color name="item_button_stop">#EF5350</color>
 </resources>

@@ -21,12 +21,18 @@
         android:id="@+id/nav_settings"
         android:name="com.kth.id2216.group3.time.SettingsActivity"
         android:label="@string/menu_settings"
-        tools:layout="@layout/activity_settings"/>
+        tools:layout="@layout/activity_settings" />
     <fragment
         android:id="@+id/createTimer"
         android:name="com.kth.id2216.group3.time.ui.createtimer.CreateTimerFragment"
         android:label="Create Timer"
         tools:layout="@layout/fragment_create_timer" />
+
+    <activity
+        android:id="@+id/timerActivity"
+        android:name="com.kth.id2216.group3.time.TimerActivity"
+        android:label="Timer"
+        tools:layout="@layout/activity_timer" />
 
 
 </navigation>
