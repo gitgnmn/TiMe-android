@@ -3,30 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="4dp">
+    android:background="@drawable/card_bg"
+    android:layout_margin="10dp"
+    android:focusable="auto"
+    >
 
     <ProgressBar
         android:id="@+id/item_progress"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:indeterminateOnly="false"
-        android:progressDrawable="@drawable/pb_circular_determinative"
         android:progress="40"
-        />
+        android:progressDrawable="@drawable/pb_circular_determinative" />
 
     <TextView
         android:id="@+id/item_hours"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="150dp"
         android:layout_alignTop="@id/item_progress"
         android:layout_alignBottom="@+id/item_progress"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
         android:gravity="center|center_vertical"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/item_hours_text_size"
-        tools:ignore="RtlCompat"
         tools:text="@string/item_hours_value" />
 
     <TextView
@@ -62,5 +63,24 @@
         android:textAlignment="center"
         android:textColor="@android:color/darker_gray"
         android:textSize="15sp" />
+
+    <View
+        android:id="@+id/item_button_divider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/colorBackground"
+        android:layout_below="@id/item_categories"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/item_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/item_button_text"
+        android:layout_below="@id/item_button_divider"
+        android:background="@null"
+        android:textColor="#9CCC65"
+        android:textSize="18sp"
+        />
 
 </RelativeLayout>

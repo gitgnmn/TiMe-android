@@ -11,4 +11,5 @@
     <color name="colorPrimaryDark">@color/purple_700</color>
     <color name="colorAccent">@color/teal_200</color>
     <color name="colorBackground">@color/white</color>
+    <color name="homeview_card_bg">#E0F7FA</color>
 </resources>

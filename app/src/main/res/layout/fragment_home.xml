@@ -16,5 +16,5 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layoutManager="GridLayoutManager"
         tools:listitem="@layout/list_item"
-        tools:spanCount="5" />
+        tools:spanCount="2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

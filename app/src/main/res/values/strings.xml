@@ -19,5 +19,6 @@
     <string name="create_timer_button">Create</string>
     <string name="create_timer_goal_hint">Goal in hours</string>
     <string name="create_timer_name_hint">Name of new timer</string>
+    <string name="item_button_text">Start</string>
     <string name="message_positive_goal">Please define a positive goal</string>
 </resources>

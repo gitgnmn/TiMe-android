@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -32,17 +30,15 @@ class HomeFragment : Fragment() {
         // Insert example data
         val timer1 = Timer(id = 1, name = "Best Course Ever", goal = 140)
         val timer2 = Timer(id = 2, name = "Example Course", goal = 120, hours = 10)
-        val timer3 = Timer(id = 3, name = "Best Course Ever", goal = 20, hours = 2)
-
-
-        //val timersFake = MutableLiveData(listOf(timer1, timer2, timer3))
+        val timer3 = Timer(id = 3, name = "Building some awesome robots", goal = 20, hours = 2)
 
         val adapter = TimerAdapter(context)
         //get data
-        homeViewModel.getAllTimers().observe(viewLifecycleOwner, Observer<List<Timer>>() { timers ->
+        homeViewModel.getAllTimers().observe(viewLifecycleOwner, { timers ->
                 adapter.timers = timers
         })
 
+        // Add example data to db
         homeViewModel.addTimer(timer1)
         homeViewModel.addTimer(timer2)
         homeViewModel.addTimer(timer3)
