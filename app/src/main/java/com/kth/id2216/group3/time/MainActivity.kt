@@ -72,7 +72,6 @@ class MainActivity : AppCompatActivity() {
     fun launchTimerActivity(view: View?) {
         Log.d("Switching Activity", "TimerActivity")
         val intent = Intent(this@MainActivity, TimerActivity::class.java)
-        //val message: String = mMessageEditText.getText().toString()
         startActivity(intent)
     }
 }

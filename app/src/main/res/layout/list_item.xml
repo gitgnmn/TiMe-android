@@ -71,23 +71,42 @@
             android:textColor="@android:color/darker_gray"
             android:textSize="15sp" />
     </RelativeLayout>
+
     <View
         android:id="@+id/item_button_divider"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:layout_below="@id/item_inner_layout"
         android:background="@color/colorBackground"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp" />
 
     <Button
-        android:id="@+id/item_button"
-        android:layout_width="match_parent"
+        android:id="@+id/item_button_start"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/item_button_text"
         android:layout_below="@id/item_button_divider"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="1dp"
         android:background="@null"
-        android:textColor="#9CCC65"
+        android:drawableStart="@drawable/play_icon"
+        android:text="@string/item_button_text_start"
+        android:textColor="@color/item_button_start"
         android:textSize="18sp"
-        />
+        android:visibility="visible"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <Button
+        android:id="@+id/item_button_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_button_text_stop"
+        android:layout_below="@id/item_button_divider"
+        android:layout_centerInParent="true"
+        android:drawableStart="@drawable/pause_icon"
+        android:background="@null"
+        android:textColor="@color/item_button_stop"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        style="?android:attr/borderlessButtonStyle" />
 
 </RelativeLayout>
