@@ -34,6 +34,20 @@
             android:textColor="@android:color/darker_gray"
             android:importantForAutofill="no" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/category_list"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/category">
+
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/create_timer_button"
             android:layout_width="match_parent"
@@ -43,6 +57,8 @@
             android:background="@color/colorPrimary"
             android:gravity="center|center_vertical"
             android:text="@string/create_timer_button" />
+
+
 
     </LinearLayout>
 </LinearLayout>

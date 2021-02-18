@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.TiMe" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.TiMe" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -13,7 +13,17 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.TiMe.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="MtButtonStyle"
+        parent="Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">@style/InvisibleButtonThemeOverlay</item>
+    </style>
 
-    <style name="Theme.TiMe.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="InvisibleButtonThemeOverlay">
+        <item name="colorPrimary">@color/colorBackground</item>
+    </style>
+
+
+    <style name="Theme.TiMe.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="Theme.TiMe.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 </resources>
