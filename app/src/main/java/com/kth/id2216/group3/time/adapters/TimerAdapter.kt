@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.kth.id2216.group3.time.R
 import com.kth.id2216.group3.time.data.entities.Timer
@@ -29,7 +28,7 @@ class TimerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Inflating the Layout(Instantiates list_item.xml layout file into View object)
-        val view = inflater.inflate(R.layout.list_item, parent, false)
+        val view = inflater.inflate(R.layout.list_timers, parent, false)
         // Passing view to ViewHolder
         return ViewHolder(view)
     }
