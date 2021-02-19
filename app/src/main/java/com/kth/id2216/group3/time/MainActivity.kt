@@ -45,14 +45,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { navController.navigate(R.id.createTimer) }
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id in arrayOf(R.id.createTimer, R.id.nav_categories))
-                fab.hide()
-            else
-                fab.show()
-        }
+
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

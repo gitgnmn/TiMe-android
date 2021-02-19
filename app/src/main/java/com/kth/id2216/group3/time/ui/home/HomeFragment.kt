@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.kth.id2216.group3.time.R
 import com.kth.id2216.group3.time.adapters.TimerAdapter
 import com.kth.id2216.group3.time.data.entities.Timer
@@ -52,6 +54,12 @@ class HomeFragment : Fragment() {
 
         // Sending reference and data to Adapter
         recyclerView.adapter = adapter
+
+        val navController = findNavController()
+        val fab: FloatingActionButton = root.findViewById(R.id.fab)
+        fab.setOnClickListener { navController.navigate(R.id.createTimer) }
+
+
         return root
     }
 }
