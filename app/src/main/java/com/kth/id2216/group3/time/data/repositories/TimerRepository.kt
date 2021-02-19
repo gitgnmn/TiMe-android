@@ -12,6 +12,9 @@ Repository for the [Timer] class
 @Singleton
 class TimerRepository @Inject constructor(private val timerDAO: TimerDAO) {
 
+    fun get(timerId: Int) =
+            timerDAO.get(timerId)
+
     fun getAll() =
             timerDAO.getAll()
 

@@ -12,12 +12,15 @@
         </shape>
     </item>
     <item android:id="@android:id/progress">
-        <rotate android:fromDegrees="135"
-            android:toDegrees="135">
+        <rotate
+            android:fromDegrees="90"
+            android:toDegrees="90">
 
-            <shape android:shape="ring"
+            <shape
+                android:shape="ring"
                 android:thicknessRatio="20">
-                <gradient android:type="sweep"
+                <gradient
+                    android:type="sweep"
                     android:startColor="@color/colorAccent"
                     android:centerColor="@color/colorPrimary"
                     android:endColor="@color/colorPrimaryDark" />

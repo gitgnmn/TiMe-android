@@ -27,15 +27,15 @@ class HomeFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        // Insert example data
-        val timer1 = Timer(id = 1, name = "Best Course Ever", goal = 140)
-        val timer2 = Timer(id = 2, name = "Example Course", goal = 120, hours = 10)
-        val timer3 = Timer(id = 3, name = "Building some awesome robots", goal = 20, hours = 2)
+        // Create example data
+        val timer1 = Timer(id = 1, name = "Best Course Ever", goal = 140.0)
+        val timer2 = Timer(id = 2, name = "Example Course", goal = 120.0, hours = 10.0)
+        val timer3 = Timer(id = 3, name = "Building some awesome robots", goal = 20.0, hours = 2.0)
 
         val adapter = TimerAdapter(context)
         //get data
         homeViewModel.getAllTimers().observe(viewLifecycleOwner, { timers ->
-                adapter.timers = timers
+            adapter.timers = timers
         })
 
         // Add example data to db

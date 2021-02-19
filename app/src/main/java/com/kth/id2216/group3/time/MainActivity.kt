@@ -1,12 +1,12 @@
 package com.kth.id2216.group3.time
 
 import android.content.Intent
-import android.widget.Button
-import android.widget.ImageButton
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -27,6 +27,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
+    //val EXTRA_MESSAGE = "com.kth.id2216.group3.time.extra.MESSAGE"
+
     //private lateinit var recyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,24 +65,26 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
     fun launchTimerActivity(view: View?) {
-        Log.d("Switching Activity", "TimerActivity")
-        val intent = Intent(this@MainActivity, TimerActivity::class.java)
+        val intent = Intent(applicationContext, TimerActivity::class.java)
+        val id = view?.findViewById<View>(R.id.item_timer_id) as TextView
+        intent.putExtra("Timer id", id.text.toString())
+        Log.d("Switching Activity", "TimerActivity with id: " + id.text.toString())
         startActivity(intent)
     }
 
-    fun toggleTimer(view: View?){
+    fun toggleTimer(view: View?) {
         var timerIsRunning = 1  // Stuck on first listItem Need to be a global value
-        val btnStart = findViewById(R.id.item_button_start) as Button // Stuck on first listItem
-        val btnPause = findViewById(R.id.item_button_stop) as Button // Stuck on first listItem
+        val btnStart = findViewById<Button>(R.id.item_button_start) // Stuck on first listItem
+        val btnPause = findViewById<Button>(R.id.item_button_stop) // Stuck on first listItem
 
-        if(timerIsRunning == 1) {
-            btnPause.setVisibility(View.VISIBLE);
-            btnStart.setVisibility(View.INVISIBLE);
-        }
-        else if(timerIsRunning == 0){
-            btnPause.setVisibility(View.INVISIBLE);
-            btnStart.setVisibility(View.VISIBLE);
+        if (timerIsRunning == 1) {
+            btnPause.visibility = View.VISIBLE
+            btnStart.visibility = View.INVISIBLE
+        } else if (timerIsRunning == 0) {
+            btnPause.visibility = View.INVISIBLE
+            btnStart.visibility = View.VISIBLE
         }
     }
 }

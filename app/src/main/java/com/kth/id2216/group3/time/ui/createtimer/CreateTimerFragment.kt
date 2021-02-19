@@ -8,10 +8,8 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.kth.id2216.group3.time.R
-import com.kth.id2216.group3.time.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -41,7 +39,7 @@ class CreateTimerFragment : Fragment() {
             if (goalString != "" && Integer.parseInt(goalString) > 0) {
                 createTimerViewModel.addTimer(
                         nameEditText.text.toString(),
-                        Integer.parseInt(goalEditText.text.toString())
+                        (goalEditText.text.toString().toDouble())
                 )
                 root.findNavController().navigate(R.id.nav_home)
             } else {

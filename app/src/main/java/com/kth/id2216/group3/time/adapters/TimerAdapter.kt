@@ -37,29 +37,19 @@ class TimerAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //necessary check that the timers array is not null
         if (timers != null) {
-
+            holder.id.text = timers!![position].id.toString()
             holder.name.text = timers!![position].name
             holder.goal.text = timers!![position].getGoalFormatted()
             holder.hours.text = timers!![position].getHoursFormatted()
-            if (timers!![position].categoryId != -1) {
+            if (timers!![position].categoryId != -1)
                 holder.categories.text = timers!![position].categoryId.toString()
-            } else {
+            else
                 holder.categories.text = ""
-            }
 
-
-            val goal = timers!![position].goal
-            val hours = timers!![position].hours
-
-            if (goal != 0) {
-                val g = goal.toDouble()
-                val h = hours.toDouble()
-                val progress = (h / g) * 100
-                holder.pbar.progress = progress.toInt()
-            }
-            else {
+            if (timers!![position].goal != 0.0)
+                holder.pbar.progress = timers!![position].getProgress()
+            else
                 holder.pbar.progress = 0
-            }
         }
     }
 
@@ -80,7 +70,6 @@ class TimerAdapter(
         var hours: TextView = view.findViewById<View>(R.id.item_hours) as TextView
         var categories: TextView = view.findViewById<View>(R.id.item_categories) as TextView
         var pbar: ProgressBar = view.findViewById<View>(R.id.item_progress) as ProgressBar
-
+        var id: TextView = view.findViewById<View>(R.id.item_timer_id) as TextView
     }
-
 }

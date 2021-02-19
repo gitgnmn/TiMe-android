@@ -22,7 +22,7 @@ class CreateTimerViewModel @Inject constructor(
     val timers: LiveData<List<Timer>> = timerRepository.getAll().asLiveData()
     val categories: LiveData<List<Category>> = categoryRepository.getAll().asLiveData()
 
-    fun addTimer(name: String, goal: Int) {
+    fun addTimer(name: String, goal: Double) {
         viewModelScope.launch {
             val timer = Timer(name = name, goal = goal)
             timerRepository.insert(timer)

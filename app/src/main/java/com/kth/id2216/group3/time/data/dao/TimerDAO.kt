@@ -10,6 +10,9 @@ Data Access Object for [Timer] class
  **/
 @Dao
 interface TimerDAO {
+    @Query("SELECT * FROM timer_table WHERE id = :timerId")
+    fun get(timerId: Int): Flow<Timer>
+
     @Query("SELECT * FROM timer_table ORDER BY created ASC")
     fun getAll(): Flow<List<Timer>>
 

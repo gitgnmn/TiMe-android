@@ -11,4 +11,12 @@ enum class TimerState(val idx: Int) {
     companion object {
         fun getByValue(idx: Int) = values().firstOrNull { it.idx == idx }
     }
+
+    fun toggle(): TimerState {
+        return when (this) {
+            STOPPED -> RUNNING
+            PAUSED -> RUNNING
+            RUNNING -> PAUSED
+        }
+    }
 }
