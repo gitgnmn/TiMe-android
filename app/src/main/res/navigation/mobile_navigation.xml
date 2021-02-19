@@ -28,6 +28,12 @@
         android:label="Create Timer"
         tools:layout="@layout/fragment_create_timer" />
 
+    <fragment
+        android:id="@+id/createCategory"
+        android:name="com.kth.id2216.group3.time.ui.createcategory.CreateCategoryFragment"
+        android:label="Create Category"
+        tools:layout="@layout/fragment_create_category" />
+
     <activity
         android:id="@+id/timerActivity"
         android:name="com.kth.id2216.group3.time.TimerActivity"

@@ -6,7 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.kth.id2216.group3.time.R
+import com.kth.id2216.group3.time.adapters.CategoryAdapter
+import com.kth.id2216.group3.time.data.entities.Category
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -23,8 +29,41 @@ class CategoriesFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
 
+        //get adapter
+        val adapter = CategoryAdapter(context)
+
+        // Insert example data
+        val category1 = Category(id = 1, name = "ID2216")
+        val category2 = Category(id = 2, name = "Personal projects")
+
+        categoriesViewModel.addCategory(category1)
+        categoriesViewModel.addCategory(category2)
+
+        //get data
+        categoriesViewModel.getAllCategories().observe(viewLifecycleOwner, {
+            adapter.categories = it
+        })
+
         val root = inflater.inflate(R.layout.fragment_categories, container, false)
+        val recyclerView: RecyclerView = root.findViewById(R.id.categories_recycler_view)
+
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = adapter
+
+        val navController = findNavController()
+
+        val fab: FloatingActionButton = root.findViewById(R.id.fab_categories)
+        fab.setOnClickListener {
+            navController.navigate(R.id.createCategory) }
+
 
         return root
     }
+
+
+
+
+
+
+
 }

@@ -23,9 +23,9 @@ class CategoryRepository @Inject constructor(private val categoryDAO: CategoryDA
     suspend fun insertAll(categories: List<Category>) =
             categoryDAO.insertAll(categories)
 
-    suspend fun insert(timer: Category) =
-            categoryDAO.insert(timer)
+    suspend fun insert(category: Category) =
+            categoryDAO.insert(category)
 
-    suspend fun delete(timer: Category) =
-            categoryDAO.delete(timer)
+    suspend fun delete(category: Category) =
+            categoryDAO.delete(category)
 }

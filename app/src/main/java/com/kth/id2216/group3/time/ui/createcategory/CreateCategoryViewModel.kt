@@ -1,4 +1,4 @@
-package com.kth.id2216.group3.time.ui.categories
+package com.kth.id2216.group3.time.ui.createcategory
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -10,26 +10,19 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/**
- * ViewModel of the [CategoriesFragment]
- */
 @HiltViewModel
-class CategoriesViewModel @Inject constructor(
-    private val categoryRepository: CategoryRepository
+class CreateCategoryViewModel @Inject constructor(
+private val categoryRepository: CategoryRepository
 ): ViewModel() {
 
     val categories: LiveData<List<Category>> = categoryRepository.getAll().asLiveData()
 
-    fun addCategory(category: Category) {
+    fun addCategory(name: String) {
         viewModelScope.launch {
+            val category = Category(name = name)
             categoryRepository.insert(category)
+
         }
     }
 
-    fun getAllCategories(): LiveData<List<Category>> {
-        viewModelScope.launch {
-            val categories = categoryRepository.getAll().asLiveData()
-        }
-        return categories
-    }
 }

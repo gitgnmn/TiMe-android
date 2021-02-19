@@ -2,7 +2,6 @@ package com.kth.id2216.group3.time
 
 import android.content.Intent
 import android.widget.Button
-import android.widget.ImageButton
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -15,7 +14,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,19 +38,12 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_new_category, R.id.nav_settings
+                R.id.nav_home, R.id.nav_settings
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { navController.navigate(R.id.createTimer) }
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id in arrayOf(R.id.createTimer, R.id.nav_categories))
-                fab.hide()
-            else
-                fab.show()
-        }
+
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
