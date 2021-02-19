@@ -1,5 +1,6 @@
 package com.kth.id2216.group3.time.ui.timer
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -29,21 +30,9 @@ class TimerViewModel @Inject constructor(
         }
     }
 
-    fun toggleTimer() {
-        timer.value?.state?.toggle()
-        if (timer.value?.state == TimerState.RUNNING) {
-            // Start running the timer
-            val newTimer = java.util.Timer()
-            newTimer.schedule(timerTask {
-                timer.value?.hours?.plus(1)
-            }, 1000, 1000)
-        } else {
-            // paus time and maybe here upload to db?
-            //this.timer.cancel()
-            return
-        }
-    }
 
+    //all those getters are unnecessary you can just call viewModel.timer.name
+    //be sure to be in the lambda in an observe() though
     fun name(): String {
         return timer.value!!.name
     }
