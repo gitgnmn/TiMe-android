@@ -8,10 +8,8 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.kth.id2216.group3.time.R
-import com.kth.id2216.group3.time.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -43,6 +41,9 @@ class CreateTimerFragment : Fragment() {
                         nameEditText.text.toString(),
                         Integer.parseInt(goalEditText.text.toString())
                 )
+                //avoid the annoying go back on the create menu
+                root.findNavController().popBackStack()
+                root.findNavController().popBackStack()
                 root.findNavController().navigate(R.id.nav_home)
             } else {
                 val toast = Toast.makeText(this.context, getString(R.string.message_positive_goal), Toast.LENGTH_LONG)
@@ -51,15 +52,17 @@ class CreateTimerFragment : Fragment() {
         }
 
         var items = listOf("No category")
+        val adapter = ArrayAdapter<String>(requireContext(), R.layout.list_categories_dropdown)
 
         createTimerViewModel.getAllCategories().observe(viewLifecycleOwner, { categories ->
             if (categories.isNotEmpty()) {
                 items = listOf(items, categories.map { it.name }).flatten()
+                adapter.addAll(items)
             }
         }
         )
 
-        val adapter = ArrayAdapter(requireContext(), R.layout.list_categories_dropdown, items)
+
 
         val textField: TextInputLayout= root.findViewById(R.id.category_list)
         (textField.editText as? AutoCompleteTextView)?.setAdapter(adapter)
