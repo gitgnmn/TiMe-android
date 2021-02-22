@@ -14,4 +14,5 @@
     <color name="homeview_card_bg">#E0F7FA</color>
     <color name="item_button_start">#9CCC65</color>
     <color name="item_button_stop">#EF5350</color>
+    <color name="colorWarning">#FF0000</color>
 </resources>
