@@ -34,6 +34,17 @@
         android:label="Create Category"
         tools:layout="@layout/fragment_create_category" />
 
+    <fragment
+        android:id="@+id/editCategory"
+        android:name="com.kth.id2216.group3.time.ui.editCategory.EditCategoryFragment"
+        android:label="Edit Category"
+        tools:layout="@layout/fragment_edit_category" >
+        <argument
+            android:name="categoryId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+    </fragment>
+
     <activity
         android:id="@+id/timerActivity"
         android:name="com.kth.id2216.group3.time.TimerActivity"

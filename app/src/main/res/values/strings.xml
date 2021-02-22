@@ -39,6 +39,7 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="category">Category</string>
-    <string name="create_category_name">Category name/</string>
+    <string name="create_category_name">Category name</string>
     <string name="message_name_category">Please enter a category name</string>
+    <string name="save_changes_button">Save changes</string>
 </resources>

@@ -18,4 +18,10 @@
         android:layout_marginBottom="15dp"
         android:textSize="16sp"
         android:text="@string/category" />
+
+    <TextView
+        android:id="@+id/category_id"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"/>
 </RelativeLayout>
