@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.kth.id2216.group3.time.R
 import com.kth.id2216.group3.time.data.entities.Category
@@ -33,6 +35,7 @@ class CategoryAdapter(
         //necessary check that the categories array is not null
         if (categories != null) {
             holder.name.text = categories!![position].name
+            holder.id.text = categories!![position].id.toString()
         } else {
             holder.name.text = ""
         }
@@ -50,7 +53,22 @@ class CategoryAdapter(
         return categories!!.size
     }
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    override fun getItemId(position: Int): Long {
+        return categories!![position].id.toLong()
+    }
+
+
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
         var name: TextView = view.findViewById<View>(R.id.category_name) as TextView
+        var id: TextView = view.findViewById<View>(R.id.category_id) as TextView
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val bundle = bundleOf("categoryId" to Integer.parseInt(id.text.toString()))
+            itemView.findNavController().navigate(R.id.editCategory, bundle)
+        }
     }
 }

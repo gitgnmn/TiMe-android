@@ -20,6 +20,9 @@ interface CategoryDAO {
     @Query("SELECT * FROM category_table WHERE id IN (:categoriesIds)")
     fun loadAllByIds(categoriesIds: IntArray): Flow<List<Category>>
 
+    @Query("SELECT * FROM category_table WHERE id = :id")
+    fun loadById(id: Int): Flow<Category>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(categories: List<Category>)
     
