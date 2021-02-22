@@ -34,12 +34,14 @@ class EditCategoryFragment : Fragment() {
                 nameEditText.setText(it.name)
             })
 
-            setUpEditButton(root, category)
+            setupEditButton(root, category)
+
+            setupDeleteButton(root, category)
 
             return root
         }
 
-    private fun setUpEditButton(root: View, category: LiveData<Category>) {
+    private fun setupEditButton(root: View, category: LiveData<Category>) {
 
         val createButton: Button = root.findViewById(R.id.edit_category_button)
         createButton.setOnClickListener {
@@ -62,6 +64,20 @@ class EditCategoryFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun setupDeleteButton(root: View, category: LiveData<Category>) {
+
+        val deleteButton: Button = root.findViewById(R.id.delete_category_button)
+        deleteButton.setOnClickListener {
+            category.observe(viewLifecycleOwner, {
+                viewModel.deleteCategory(it)
+            })
+            //avoid the annoying go back on the create menu
+            root.findNavController().popBackStack()
+            root.findNavController().popBackStack()
+            root.findNavController().navigate(R.id.nav_categories)
+        }
     }
 
 
