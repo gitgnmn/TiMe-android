@@ -26,19 +26,57 @@ class TimerActivity : AppCompatActivity() {
     //private var tvTimerName: TextView? = null
     private var timerIsRunning = 0
     private var timerTime = 135 // In minutes
-    private var timerIsTitle = "TitleHere"
+    private var timerTitle = ""
     private var timerGoal = 240
+    private var timerCategory = ""
     private var timer = Timer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
-        // Set TimerName
-        //tvTimerName = findViewById(R.id.textViewTimerName);
-        val tvTimerName: TextView = findViewById(R.id.textViewTimerName) as TextView
-        tvTimerName.text = "TimerNameHere"
-        tvTimerName.text = timerIsTitle
 
+        // Accessing intent data
+        // Getting the timerTitle
+        val name = intent.getStringExtra("name");
+        if (name != null) {
+            timerTitle = name
+        }
+
+        // Getting the timers hour and minutes
+        val currentTime = intent.getStringExtra("hours");
+        if(currentTime != null) {
+            val currentTimeWithoutSpaces = currentTime.replace(" ", "")
+            val currentHours = currentTimeWithoutSpaces.split("h")[0]
+            timerTime = (currentHours.toInt() * 60)
+
+            val restString = currentTimeWithoutSpaces.substring(currentTimeWithoutSpaces.lastIndexOf("h") + 1);
+            val currentMinutes = restString.split("m")[0]
+            timerTime += currentMinutes.toInt()
+        }
+
+        // Getting the timers goal
+        val currentGoal = intent.getStringExtra("goal");
+        if(currentGoal != null) {
+            val currentGoalWithoutSpaces = currentGoal.replace(" ", "")
+            val currentHours = currentGoalWithoutSpaces.split("h")[0]
+            timerGoal = (currentHours.toInt() * 60)
+
+            val restString = currentGoalWithoutSpaces.substring(currentGoalWithoutSpaces.lastIndexOf("h") + 1);
+            val currentMinutes = restString.split("m")[0]
+            timerGoal += currentMinutes.toInt()
+        }
+        println("The timers goal is: $timerGoal")
+
+        // Getting the timerTitle
+        val category = intent.getStringExtra("category");
+        if (category != null) {
+             timerCategory = category
+        }
+
+        // Displaying the timers values
+        // Set TimerName
+        val tvTimerName: TextView = findViewById(R.id.textViewTimerName) as TextView
+        tvTimerName.text = timerTitle
 
         // Set TimerTime
         val tvTimerHours: TextView = findViewById(R.id.textViewProgressBarHours) as TextView
@@ -75,7 +113,10 @@ class TimerActivity : AppCompatActivity() {
 
         // Update progressbar to 25%
         val pbar = findViewById(R.id.progressBar) as ProgressBar
-        pbar.setProgress(25)
+        var curPer: Double
+        curPer = ((timerTime.toDouble() / timerGoal.toDouble()) * 100)
+        if(curPer > 100 ) curPer = 100.toDouble()
+        pbar.setProgress(curPer.toInt())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -96,8 +137,8 @@ class TimerActivity : AppCompatActivity() {
     fun toggleTimer() {
         timerIsRunning = ((timerIsRunning + 1) % 2)
         //tvTimerName.setText("Toggled")
-        val tvTimerName: TextView = findViewById(R.id.textViewTimerName) as TextView
-        tvTimerName.text = "Timer status: " + timerIsRunning
+        //val tvTimerName: TextView = findViewById(R.id.textViewTimerName) as TextView
+        //tvTimerName.text = "Timer status: " + timerIsRunning
 
         if(timerIsRunning == 1) {
             // Start running the timer
