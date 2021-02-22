@@ -1,6 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#83000000"
+    android:gravity="center|top"
+    tools:context=".ui.editTimer.EditTimerFragment">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="323dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/category_list"
+        app:layout_constraintTop_toTopOf="@+id/category_list">
+
+        <EditText
+            android:id="@+id/edit_timer_name"
+            android:layout_width="346dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="4dp"
+            android:hint="@string/create_timer_name_hint"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.449"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_conversion_absoluteHeight="45dp"
+            tools:layout_conversion_absoluteWidth="372dp" />
+
+        <EditText
+            android:id="@+id/edit_timer_goal"
+            android:layout_width="349dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="14dp"
+            android:hint="@string/create_timer_goal_hint"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_timer_name"
+            tools:layout_conversion_absoluteHeight="45dp"
+            tools:layout_conversion_absoluteWidth="372dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/category_list"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/category"
+            app:layout_constraintBottom_toTopOf="@+id/edit_timer_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/edit_timer_goal"
+            app:layout_constraintTop_toBottomOf="@+id/edit_timer_goal"
+            tools:layout_conversion_absoluteHeight="61dp"
+            tools:layout_conversion_absoluteWidth="392dp">
+
+            <AutoCompleteTextView
+                android:layout_width="345dp"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                tools:layout_conversion_absoluteHeight="56dp"
+                tools:layout_conversion_absoluteWidth="392dp"
+                tools:layout_editor_absoluteX="10dp"
+                tools:layout_editor_absoluteY="125dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/edit_timer_button"
+            android:layout_width="290dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="100dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center|center_vertical"
+            android:text="@string/save_changes_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_timer_goal"
+            tools:layout_conversion_absoluteHeight="48dp"
+            tools:layout_conversion_absoluteWidth="351dp" />
+
+        <Button
+            android:id="@+id/delete_timer_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorWarning"
+            android:gravity="end"
+            android:text="@string/delete_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.904"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_timer_button"
+            app:layout_constraintVertical_bias="0.882"
+            tools:layout_conversion_absoluteHeight="48dp"
+            tools:layout_conversion_absoluteWidth="88dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
