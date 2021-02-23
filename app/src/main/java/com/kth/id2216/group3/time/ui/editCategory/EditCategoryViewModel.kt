@@ -24,4 +24,10 @@ class EditCategoryViewModel @Inject constructor(
             categoryRepository.insert(category)
         }
     }
+
+    fun deleteCategory(category: Category) {
+        viewModelScope.launch {
+            categoryRepository.delete(category)
+        }
+    }
 }
