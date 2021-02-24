@@ -3,6 +3,7 @@ package com.kth.id2216.group3.time.data.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.time.Duration
 
 /**
  * Represents a session of a timer
@@ -14,5 +15,5 @@ data class Session(
         @ColumnInfo(name = "timer_id")
         val timerId: Int,
         @ColumnInfo(name = "duration")
-        var duration: Int = 0
+        var duration: Duration = Duration.ZERO
 )

@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TimerActivity">
+
+
     <ImageButton
         android:id="@+id/imageButtonBackToMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginTop="24dp"
-        android:background="#00BCD4"
+        android:background="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="@+id/buttonToggleTimer"
         app:layout_constraintTop_toBottomOf="@+id/buttonToggleTimer"
         app:srcCompat="@drawable/abc_vector_test" />
@@ -22,7 +24,7 @@
         android:layout_height="44dp"
         android:layout_marginStart="72dp"
         android:layout_marginTop="32dp"
-        android:background="#00BCD4"
+        android:background="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toBottomOf="@+id/progressBar"
         app:srcCompat="@drawable/play_icon"/>
@@ -78,4 +80,18 @@
         app:layout_constraintStart_toStartOf="@+id/textViewProgressBarHours"
         app:layout_constraintTop_toBottomOf="@+id/textViewProgressBarHours"
         tools:text="00m" />
+
+    <Button
+        android:id="@+id/delete_timer_button_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="@color/colorWarning"
+        android:text="@string/delete_button"
+        android:onClick="deleteTimer"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonBackToMenu" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

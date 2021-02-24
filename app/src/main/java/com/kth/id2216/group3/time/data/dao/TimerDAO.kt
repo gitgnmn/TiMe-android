@@ -20,6 +20,9 @@ interface TimerDAO {
     @Query("SELECT * FROM timer_table WHERE id IN (:timersIds)")
     fun loadAllByIds(timersIds: IntArray): Flow<List<Timer>>
 
+    @Query("SELECT * FROM timer_table WHERE id = :timerId")
+    fun loadById(timerId: Int): Flow<Timer>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(timers: List<Timer>)
 

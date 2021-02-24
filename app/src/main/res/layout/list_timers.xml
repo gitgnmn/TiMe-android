@@ -15,6 +15,12 @@
         android:orientation="vertical"
         android:onClick="launchTimerActivity">
 
+        <TextView
+            android:id="@+id/timer_id"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"/>
+
         <ProgressBar
             android:id="@+id/item_progress"
             android:layout_width="match_parent"
@@ -92,6 +98,7 @@
         android:textColor="@color/item_button_start"
         android:textSize="18sp"
         android:visibility="visible"
+        android:onClick="toggleTimer"
         style="?android:attr/borderlessButtonStyle" />
 
     <Button
@@ -105,6 +112,7 @@
         android:textColor="@color/item_button_stop"
         android:textSize="18sp"
         android:visibility="invisible"
+        android:onClick="toggleTimer"
         style="?android:attr/borderlessButtonStyle" />
 
 </RelativeLayout>
