@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.kth.id2216.group3.time.R
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.Duration
 
 /**
  * A simple [Fragment] subclass handling timer creation
@@ -39,7 +40,7 @@ class CreateTimerFragment : Fragment() {
             if (goalString != "" && Integer.parseInt(goalString) > 0) {
                 createTimerViewModel.addTimer(
                         nameEditText.text.toString(),
-                        Integer.parseInt(goalEditText.text.toString())
+                        Duration.ofHours(goalEditText.text.toString().toLong())
                 )
                 //avoid the annoying go back on the create menu
                 root.findNavController().popBackStack()

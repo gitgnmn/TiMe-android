@@ -15,6 +15,7 @@ import com.kth.id2216.group3.time.R
 import com.kth.id2216.group3.time.adapters.TimerAdapter
 import com.kth.id2216.group3.time.data.entities.Timer
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.Duration
 
 /**
  * Fragment handling the list of timers in the home
@@ -30,9 +31,9 @@ class HomeFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         // Insert example data
-        val timer1 = Timer(id = 1, name = "Best Course Ever", goal = 140)
-        val timer2 = Timer(id = 2, name = "Example Course", goal = 120, hours = 10)
-        val timer3 = Timer(id = 3, name = "Building some awesome robots", goal = 20, hours = 2)
+        val timer1 = Timer(id = 1, name = "Best Course Ever", goal = Duration.ofHours(14))
+        val timer2 = Timer(id = 2, name = "Example Course", goal = Duration.ofHours(20), time = Duration.ofHours(10))
+        val timer3 = Timer(id = 3, name = "Building some awesome robots", goal = Duration.ofHours(20), time = Duration.ofHours(1))
 
         val adapter = TimerAdapter(context)
         //get data

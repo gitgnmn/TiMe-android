@@ -12,11 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.navigation.findNavController
-import androidx.preference.PreferenceFragmentCompat
+
 import com.kth.id2216.group3.time.R
 import com.kth.id2216.group3.time.data.entities.Timer
-import com.kth.id2216.group3.time.ui.editTimer.EditTimerViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.Duration
 
 @AndroidEntryPoint
 class EditTimerFragment : Fragment() {
@@ -36,7 +36,7 @@ class EditTimerFragment : Fragment() {
 
         timer.observe(viewLifecycleOwner, {
             nameEditText.setText(it.name)
-            goalEditText.setText(it.goal)
+            goalEditText.setText(it.goal.toHours().toInt())
         })
 
         var items = listOf("No category")
@@ -69,7 +69,7 @@ class EditTimerFragment : Fragment() {
                 //updating the name
                 timer.observe(viewLifecycleOwner, {
                     it.name = nameEditText.text.toString()
-                    it.goal = Integer.parseInt(goalEditText.text.toString())
+                    it.goal = Duration.ofHours(goalEditText.text.toString().toLong())
                     viewModel.updateTimer(it)
                 })
                 //avoid the annoying go back on the create menu

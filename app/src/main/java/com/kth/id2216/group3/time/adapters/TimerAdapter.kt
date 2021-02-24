@@ -49,12 +49,12 @@ class TimerAdapter(
 
 
             val goal = timers!![position].goal
-            val hours = timers!![position].hours
+            val time = timers!![position].time
 
-            if (goal != 0) {
-                val g = goal.toDouble()
-                val h = hours.toDouble()
-                val progress = (h / g) * 100
+            if (goal != Duration.ZERO) {
+                val g = goal.toMillis()
+                val t = time.toMillis()
+                val progress = Math.floor((t.toDouble() / g.toDouble()) * 100)
                 holder.pbar.progress = progress.toInt()
             }
             else {

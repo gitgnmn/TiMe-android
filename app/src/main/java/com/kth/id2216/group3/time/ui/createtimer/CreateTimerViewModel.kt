@@ -10,6 +10,7 @@ import com.kth.id2216.group3.time.data.repositories.CategoryRepository
 import com.kth.id2216.group3.time.data.repositories.TimerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.time.Duration
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,7 +23,7 @@ class CreateTimerViewModel @Inject constructor(
     val timers: LiveData<List<Timer>> = timerRepository.getAll().asLiveData()
     val categories: LiveData<List<Category>> = categoryRepository.getAll().asLiveData()
 
-    fun addTimer(name: String, goal: Int) {
+    fun addTimer(name: String, goal: Duration) {
         viewModelScope.launch {
             val timer = Timer(name = name, goal = goal)
             timerRepository.insert(timer)
