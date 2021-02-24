@@ -27,7 +27,7 @@
             android:layout_height="150dp"
             android:indeterminateOnly="false"
             android:progress="40"
-            android:progressDrawable="@drawable/pb_circular_determinative" />
+            android:progressDrawable="@drawable/pb_circular_determinative_white" />
 
         <TextView
             android:id="@+id/item_hours"
@@ -98,7 +98,6 @@
         android:textColor="@color/item_button_start"
         android:textSize="18sp"
         android:visibility="visible"
-        android:onClick="toggleTimer"
         style="?android:attr/borderlessButtonStyle" />
 
     <Button
@@ -112,7 +111,6 @@
         android:textColor="@color/item_button_stop"
         android:textSize="18sp"
         android:visibility="invisible"
-        android:onClick="toggleTimer"
         style="?android:attr/borderlessButtonStyle" />
 
 </RelativeLayout>

@@ -29,5 +29,12 @@ data class Timer(
         var time: Duration = Duration.ZERO
 ) : Serializable {
 
+        fun toggle() {
+                if (this.state != TimerState.RUNNING) {
+                        this.state = TimerState.RUNNING
+                } else {
+                        this.state = TimerState.STOPPED
+                }
+        }
 
 }

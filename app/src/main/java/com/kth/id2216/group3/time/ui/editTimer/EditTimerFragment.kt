@@ -15,6 +15,7 @@ import androidx.navigation.findNavController
 
 import com.kth.id2216.group3.time.R
 import com.kth.id2216.group3.time.data.entities.Timer
+import com.kth.id2216.group3.time.ui.timer.TimerFragment.Companion.KEY_TIMER_ID
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.Duration
 
@@ -28,7 +29,7 @@ class EditTimerFragment : Fragment() {
 
         val root = inflater.inflate(R.layout.fragment_edit_timer, container, false)
 
-        val receivedId = requireArguments().getInt("timerId")
+        val receivedId = requireArguments().getInt(KEY_TIMER_ID)
         val timer = viewModel.getTimer(receivedId)
 
         val nameEditText: EditText = root.findViewById(R.id.edit_timer_name)
@@ -36,7 +37,7 @@ class EditTimerFragment : Fragment() {
 
         timer.observe(viewLifecycleOwner, {
             nameEditText.setText(it.name)
-            goalEditText.setText(it.goal.toHours().toInt())
+            goalEditText.setText(it.goal.toHours().toInt().toString())
         })
 
         var items = listOf("No category")
@@ -61,7 +62,7 @@ class EditTimerFragment : Fragment() {
 
         val createButton: Button = root.findViewById(R.id.edit_timer_button)
         createButton.setOnClickListener {
-            val nameEditText: EditText = root.findViewById(R.id.create_timer_name)
+            val nameEditText: EditText = root.findViewById(R.id.edit_timer_name)
             val goalEditText: EditText = root.findViewById(R.id.edit_timer_goal)
 
             // check if te value of the goal is set up and positive

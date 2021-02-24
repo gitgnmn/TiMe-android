@@ -45,17 +45,27 @@
             android:defaultValue="0"/>
     </fragment>
 
-    <activity
-        android:id="@+id/timerActivity"
-        android:name="com.kth.id2216.group3.time.TimerActivity"
+    <fragment
+        android:id="@+id/timerFragment"
+        android:name="com.kth.id2216.group3.time.ui.timer.TimerFragment"
         android:label="Timer"
-        tools:layout="@layout/activity_timer" />
+        tools:layout="@layout/fragment_timer">
+        <argument
+            android:name="timerId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+    </fragment>
 
     <fragment
         android:id="@+id/editTimer"
         android:name="com.kth.id2216.group3.time.ui.editTimer.EditTimerFragment"
         android:label="Edit Timer"
-        tools:layout="@layout/fragment_edit_timer" />
+        tools:layout="@layout/fragment_edit_timer">
+        <argument
+            android:name="timerId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+    </fragment>
 
 
 </navigation>
