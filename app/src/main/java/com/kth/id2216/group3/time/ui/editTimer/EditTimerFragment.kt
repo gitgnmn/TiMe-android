@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.navigation.findNavController
@@ -18,12 +19,7 @@ import com.kth.id2216.group3.time.ui.editTimer.EditTimerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class EditTimerFragment : PreferenceFragmentCompat() {
-
-
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(R.xml.root_preferences, rootKey)
-    }
+class EditTimerFragment : Fragment() {
 
     private val viewModel: EditTimerViewModel by viewModels()
 
