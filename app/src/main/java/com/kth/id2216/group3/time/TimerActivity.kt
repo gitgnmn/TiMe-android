@@ -6,16 +6,19 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.kth.id2216.group3.time.MainActivity.Companion.EXTRA_TIMER_ID
+import com.kth.id2216.group3.time.data.entities.Timer
+import com.kth.id2216.group3.time.data.util.TimerState
+import com.kth.id2216.group3.time.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import org.w3c.dom.Text
-import java.util.*
+import kotlinx.coroutines.runBlocking
 import kotlin.concurrent.timerTask
 
 /**
@@ -23,100 +26,62 @@ import kotlin.concurrent.timerTask
  */
 @AndroidEntryPoint
 class TimerActivity : AppCompatActivity() {
-    //private var tvTimerName: TextView? = null
-    private var timerIsRunning = 0
-    private var timerTime = 135 // In minutes
-    private var timerTitle = ""
-    private var timerGoal = 240
-    private var timerCategory = ""
-    private var timer = Timer()
+
+    private lateinit var timer: Timer
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         // Accessing intent data
-        // Getting the timerTitle
-        val name = intent.getStringExtra("name");
-        if (name != null) {
-            timerTitle = name
+        val timerId= intent.getIntExtra(EXTRA_TIMER_ID, -1)
+        Log.d("WHAT", "$timerId")
+        if (timerId != -1) {
+            viewModel.loadTimerById(timerId).observe(this@TimerActivity, {
+                timer = it
+                // Displaying the timers values
+                // Set TimerName
+                val tvTimerName: TextView = findViewById(R.id.textViewTimerName)
+                tvTimerName.text = timer.name
+
+                // Set TimerTime
+                val tvTimerHours: TextView = findViewById(R.id.textViewProgressBarHours)
+                tvTimerHours.text = "${timer.time.toHours()} h"
+
+                val tvTimerMinutes: TextView = findViewById(R.id.textViewProgressBarMinutes)
+                tvTimerMinutes.text = "${timer.time.minusHours(timer.time.toHours()).toMinutes()} m"
+
+
+                // Update progressbar to 25%
+                updateProgressBar(timer)
+
+                //set toggle button
+                val btnToggle: ImageButton = findViewById(R.id.buttonToggleTimer)
+                btnToggle.setOnClickListener {
+                    //Toast.makeText(this@TimerActivity, "You clicked me.", Toast.LENGTH_SHORT).show()
+                    toggleTimer(timer)
+                    // Change img of button
+                    if(timer.state != TimerState.RUNNING)
+                        btnToggle.setImageResource(R.drawable.pause_icon);
+                    else
+                        btnToggle.setImageResource(R.drawable.play_icon);
+                }
+
+                //set back button
+                val btnBack: ImageButton = findViewById(R.id.imageButtonBackToMenu)
+                btnBack.setOnClickListener{
+                    Log.d("Switching Activity", "MainActivity")
+                    val intent = Intent(this@TimerActivity, MainActivity::class.java)
+                    startActivity(intent)
+                }
+
+
+            })
+
         }
 
-        // Getting the timers hour and minutes
-        val currentTime = intent.getStringExtra("hours");
-        if(currentTime != null) {
-            val currentTimeWithoutSpaces = currentTime.replace(" ", "")
-            val currentHours = currentTimeWithoutSpaces.split("h")[0]
-            timerTime = (currentHours.toInt() * 60)
-
-            val restString = currentTimeWithoutSpaces.substring(currentTimeWithoutSpaces.lastIndexOf("h") + 1);
-            val currentMinutes = restString.split("m")[0]
-            timerTime += currentMinutes.toInt()
-        }
-
-        // Getting the timers goal
-        val currentGoal = intent.getStringExtra("goal");
-        if(currentGoal != null) {
-            val currentGoalWithoutSpaces = currentGoal.replace(" ", "")
-            val currentHours = currentGoalWithoutSpaces.split("h")[0]
-            timerGoal = (currentHours.toInt() * 60)
-
-            val restString = currentGoalWithoutSpaces.substring(currentGoalWithoutSpaces.lastIndexOf("h") + 1);
-            val currentMinutes = restString.split("m")[0]
-            timerGoal += currentMinutes.toInt()
-        }
-        println("The timers goal is: $timerGoal")
-
-        // Getting the timerTitle
-        val category = intent.getStringExtra("category");
-        if (category != null) {
-             timerCategory = category
-        }
-
-        // Displaying the timers values
-        // Set TimerName
-        val tvTimerName: TextView = findViewById(R.id.textViewTimerName) as TextView
-        tvTimerName.text = timerTitle
-
-        // Set TimerTime
-        val tvTimerHours: TextView = findViewById(R.id.textViewProgressBarHours) as TextView
-        tvTimerHours.text = "TimerHours"
-        val hours = (timerTime/60)
-        tvTimerHours.text = hours.toString() + "h"
-
-        val tvTimerMinutes: TextView = findViewById(R.id.textViewProgressBarMinutes) as TextView
-        tvTimerMinutes.text = "TimerMinutes"
-        val minutes = (timerTime - hours*60)
-        if(minutes < 10)
-            tvTimerMinutes.text = "0" + minutes.toString() + "m"
-        else
-            tvTimerMinutes.text = minutes.toString() + "m"
-
-        val btnToggle = findViewById(R.id.buttonToggleTimer) as ImageButton
-        btnToggle.setOnClickListener {
-            //Toast.makeText(this@TimerActivity, "You clicked me.", Toast.LENGTH_SHORT).show()
-            toggleTimer()
-            // Change img of button
-            if(timerIsRunning == 1)
-                btnToggle.setImageResource(R.drawable.pause_icon);
-            else if(timerIsRunning == 0)
-                btnToggle.setImageResource(R.drawable.play_icon);
-        }
-
-        val btnBack = findViewById(R.id.imageButtonBackToMenu) as ImageButton
-        btnBack.setOnClickListener{
-
-            Log.d("Switching Activity", "MainActivity")
-            val intent = Intent(this@TimerActivity, MainActivity::class.java)
-            startActivity(intent)
-        }
-
-        // Update progressbar to 25%
-        val pbar = findViewById(R.id.progressBar) as ProgressBar
-        var curPer: Double
-        curPer = ((timerTime.toDouble() / timerGoal.toDouble()) * 100)
-        if(curPer > 100 ) curPer = 100.toDouble()
-        pbar.setProgress(curPer.toInt())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -126,78 +91,63 @@ class TimerActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_item -> {
-                //TODO Add code for switch to TimerEditFragment
-                Toast.makeText(this, "Tapped on icon", Toast.LENGTH_SHORT).show()
+                val bundle = bundleOf("timerId" to timer.id)
+                findNavController(R.id.nav_host_fragment).navigate(R.id.editTimer, bundle)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    fun toggleTimer() {
-        timerIsRunning = ((timerIsRunning + 1) % 2)
-        //tvTimerName.setText("Toggled")
-        //val tvTimerName: TextView = findViewById(R.id.textViewTimerName) as TextView
-        //tvTimerName.text = "Timer status: " + timerIsRunning
+    fun toggleTimer(timer: Timer) {
+        if (timer.state != TimerState.RUNNING) {
+            timer.state = TimerState.RUNNING
+        } else {
+            timer.state = TimerState.STOPPED
+        }
 
-        if(timerIsRunning == 1) {
+        val javaTimer = java.util.Timer()
+
+        if(timer.state == TimerState.RUNNING) {
             // Start running the timer
-            val newTimer = Timer()
-            newTimer.schedule(timerTask {
-                timerTime++
+            javaTimer.schedule(timerTask {
+                timer.time = timer.time.plusSeconds(1)
 
                 // Set TimerTime
                 val tvTimerHours: TextView = findViewById(R.id.textViewProgressBarHours) as TextView
-                val hours = (timerTime/60)
-                tvTimerHours.text = hours.toString() + "h"
+                tvTimerHours.text = "${timer.time.toHours()} h"
 
                 val tvTimerMinutes: TextView = findViewById(R.id.textViewProgressBarMinutes) as TextView
-                val minutes = (timerTime - hours*60)
+                val minutes = timer.time.toMinutes()
                 if(minutes < 10)
-                    tvTimerMinutes.text = "0" + minutes.toString() + "m"
+                    tvTimerMinutes.text = "0${timer.time.minusHours(timer.time.toHours()).toMinutes()} m"
                 else
-                    tvTimerMinutes.text = minutes.toString() + "m"
+                    tvTimerMinutes.text = "${timer.time.minusHours(timer.time.toHours()).toMinutes()} m"
 
 
                 // Update progressbar
-                val pbar = findViewById(R.id.progressBar) as ProgressBar
-                var curPer: Double
-                curPer = ((timerTime.toDouble() / timerGoal.toDouble()) * 100)
-                if(curPer > 100 ) curPer = 100.toDouble()
-                pbar.setProgress(curPer.toInt())
+                updateProgressBar(timer)
 
             }, 1000, 1000)
-
-            this.timer = newTimer
-
-            //newTimer.scheduleAtFixedRate(task, 1000, 1000);
-            //val taskToPerform: TimerTask = TimerHelper()
-            //newTimer.schedule(taskToPerform, 1000, 2000) // Will run after 1 sec every 2 sec
-
-
-            // Update the progressbar and time
 
 
         }
         else{
-            // paus time and maybe here upload to db?
-            this.timer.cancel()
+            // pause time and upload to db
+            javaTimer.cancel()
+
+            runBlocking {
+                viewModel.addTimer(timer)
+            }
             return
         }
     }
 
-
+    fun updateProgressBar(timer: Timer) {
+        val pbar = findViewById<ProgressBar>(R.id.progressBar)
+        val curPer = Math.floor(((timer.time.toMinutes().toDouble() / timer.goal.toMinutes().toDouble()) * 100))
+        Log.d("S", "$curPer")
+        pbar.progress = curPer.toInt()
+    }
 
 }
-
-/*internal class TimerHelper : TimerTask() {
-    var value = 15
-    override fun run() {
-            counter++
-            println("Timer run Number " + counter)
-    }
-} 
-    companion object {
-        var counter = 0
-    }
-}*/

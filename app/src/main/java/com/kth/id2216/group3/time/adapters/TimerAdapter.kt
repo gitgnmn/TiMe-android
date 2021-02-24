@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kth.id2216.group3.time.R
 import com.kth.id2216.group3.time.data.entities.Timer
+import java.time.Duration
 
 /**
  * Extends the [TimerAdapter] class to [RecyclerView.Adapter]
@@ -37,10 +38,10 @@ class TimerAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //necessary check that the timers array is not null
         if (timers != null) {
-
+            holder.id.text = timers!![position].id.toString()
             holder.name.text = timers!![position].name
-            holder.goal.text = timers!![position].getGoalFormatted()
-            holder.hours.text = timers!![position].getHoursFormatted()
+            holder.goal.text = timers!![position].goal.toHours().toString()
+            holder.hours.text = timers!![position].time.toHours().toString()
             if (timers!![position].categoryId != -1) {
                 holder.categories.text = timers!![position].categoryId.toString()
             } else {
@@ -75,11 +76,12 @@ class TimerAdapter(
 
     // Initializing the Views
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var name: TextView = view.findViewById<View>(R.id.item_name) as TextView
-        var goal: TextView = view.findViewById<View>(R.id.item_goal) as TextView
-        var hours: TextView = view.findViewById<View>(R.id.item_hours) as TextView
-        var categories: TextView = view.findViewById<View>(R.id.item_categories) as TextView
-        var pbar: ProgressBar = view.findViewById<View>(R.id.item_progress) as ProgressBar
+        var id: TextView = view.findViewById(R.id.timer_id)
+        var name: TextView = view.findViewById(R.id.item_name)
+        var goal: TextView = view.findViewById(R.id.item_goal)
+        var hours: TextView = view.findViewById(R.id.item_hours)
+        var categories: TextView = view.findViewById(R.id.item_categories)
+        var pbar: ProgressBar = view.findViewById(R.id.item_progress)
 
     }
 

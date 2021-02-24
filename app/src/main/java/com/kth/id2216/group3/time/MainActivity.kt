@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +26,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
-    //private lateinit var recyclerView: RecyclerView
+
+    companion object {
+        const val EXTRA_TIMER_ID = "extra_timer_id"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -47,56 +50,40 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-    fun launchTimerActivity(view: View?) {
-        Log.d("Switching Activity", "TimerActivity")
-        val intent = Intent(this@MainActivity, TimerActivity::class.java)
 
-        // Send the data to timerActivity
-        val hourView:TextView = (view as ViewGroup).getChildAt(1) as TextView
-        val hours = hourView.text.toString()
-        println("This should be the hours: $hours")
-        intent.putExtra("hours", hours)
 
-        val goalView:TextView = (view as ViewGroup).getChildAt(2) as TextView
-        val goal = goalView.text.toString()
-        println("This should be the goal: $hours")
-        intent.putExtra("goal", goal)
-
-        val nameView:TextView = (view as ViewGroup).getChildAt(3) as TextView
-        val name = nameView.text.toString()
-        println("This should be the name: $name")
-        intent.putExtra("name", name)
-
-        val categoryView:TextView = (view as ViewGroup).getChildAt(4) as TextView
-        val category = categoryView.text.toString()
-        println("This should be the category: $category")
-        intent.putExtra("category", category)
-        // End of putting extra data into intent
-
-        startActivity(intent)
-    }
 
     fun toggleTimer(view: View?){
         var timerIsRunning = 1  // Stuck on first listItem Need to be a global value
-        val btnStart = findViewById(R.id.item_button_start) as Button // Stuck on first listItem
-        val btnPause = findViewById(R.id.item_button_stop) as Button // Stuck on first listItem
+        val btnStart = findViewById<Button>(R.id.item_button_start) // Stuck on first listItem
+        val btnPause = findViewById<Button>(R.id.item_button_stop) // Stuck on first listItem
 
         if(timerIsRunning == 1) {
-            btnPause.setVisibility(View.VISIBLE);
-            btnStart.setVisibility(View.INVISIBLE);
+            btnPause.visibility = View.VISIBLE;
+            btnStart.visibility = View.INVISIBLE;
         }
         else if(timerIsRunning == 0){
-            btnPause.setVisibility(View.INVISIBLE);
-            btnStart.setVisibility(View.VISIBLE);
+            btnPause.visibility = View.INVISIBLE;
+            btnStart.visibility = View.VISIBLE;
         }
+    }
+
+    fun launchTimerActivity(view: View) {
+        val timerIdView: TextView = view.findViewById(R.id.timer_id)
+        val timerId = Integer.parseInt(timerIdView.text.toString())
+        val intent = Intent(this@MainActivity, TimerActivity::class.java)
+        intent.putExtra(EXTRA_TIMER_ID, timerId)
+        startActivity(intent)
     }
 }

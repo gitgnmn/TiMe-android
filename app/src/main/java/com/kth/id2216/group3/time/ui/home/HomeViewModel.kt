@@ -35,5 +35,9 @@ class HomeViewModel @Inject constructor(
         return timers
     }
 
+    fun loadTimerById(id: Int): LiveData<Timer> {
+            return timerRepository.loadById(id).asLiveData()
+    }
+
 
 }
