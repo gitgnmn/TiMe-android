@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -40,8 +41,9 @@ class TimerAdapter(
         if (timers != null) {
             holder.id.text = timers!![position].id.toString()
             holder.name.text = timers!![position].name
-            holder.goal.text = timers!![position].goal.toHours().toString()
-            holder.hours.text = timers!![position].time.toHours().toString()
+            holder.goal.text = "${timers!![position].goal.toHours()} h"
+            val duration = timers!![position].time
+            holder.hours.text = "${duration.toHours()} h ${duration.minusHours(duration.toHours()).toMinutes()} m"
             if (timers!![position].categoryId != -1) {
                 holder.categories.text = timers!![position].categoryId.toString()
             } else {
@@ -82,7 +84,27 @@ class TimerAdapter(
         var hours: TextView = view.findViewById(R.id.item_hours)
         var categories: TextView = view.findViewById(R.id.item_categories)
         var pbar: ProgressBar = view.findViewById(R.id.item_progress)
+        var bottomButton: View = view.findViewById(R.id.item_button_divider)
+        var timerIsRunning = 0
 
+        init {
+
+            bottomButton.setOnClickListener {
+                val btnStart = view.findViewById<Button>(R.id.item_button_start)
+                val btnPause = view.findViewById<Button>(R.id.item_button_stop)
+
+                if(timerIsRunning == 1) {
+                    btnPause.visibility = View.VISIBLE;
+                    btnStart.visibility = View.INVISIBLE;
+                    timerIsRunning = 0
+                }
+                else if(timerIsRunning == 0){
+                    btnPause.visibility = View.INVISIBLE;
+                    btnStart.visibility = View.VISIBLE;
+                    timerIsRunning = 1
+                }
+            }
+        }
     }
 
 }

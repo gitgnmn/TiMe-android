@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.os.bundleOf
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.ActivityNavigator
 import androidx.navigation.findNavController
@@ -17,6 +18,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import com.kth.id2216.group3.time.ui.timer.TimerFragment.Companion.KEY_TIMER_ID
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -65,28 +67,11 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    fun toggleTimer(view: View?){
-        var timerIsRunning = 1  // Stuck on first listItem Need to be a global value
-        val btnStart = findViewById<Button>(R.id.item_button_start) // Stuck on first listItem
-        val btnPause = findViewById<Button>(R.id.item_button_stop) // Stuck on first listItem
-
-        if(timerIsRunning == 1) {
-            btnPause.visibility = View.VISIBLE;
-            btnStart.visibility = View.INVISIBLE;
-        }
-        else if(timerIsRunning == 0){
-            btnPause.visibility = View.INVISIBLE;
-            btnStart.visibility = View.VISIBLE;
-        }
-    }
-
     fun launchTimerActivity(view: View) {
         val timerIdView: TextView = view.findViewById(R.id.timer_id)
         val timerId = Integer.parseInt(timerIdView.text.toString())
-        val intent = Intent(this@MainActivity, TimerActivity::class.java)
-        intent.putExtra(EXTRA_TIMER_ID, timerId)
-        val dest = ActivityNavigator(this).createDestination().setIntent(intent)
-        ActivityNavigator(this).navigate(dest, null, null, null)
 
+        val bundle = bundleOf(KEY_TIMER_ID to timerId)
+        findNavController(R.id.nav_host_fragment).navigate(R.id.timerFragment, bundle)
     }
 }

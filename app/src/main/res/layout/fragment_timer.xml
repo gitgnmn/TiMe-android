@@ -4,70 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TimerActivity">
+    tools:context=".ui.timer.TimerFragment">
 
-
-    <ImageButton
-        android:id="@+id/imageButtonBackToMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintStart_toStartOf="@+id/buttonToggleTimer"
-        app:layout_constraintTop_toBottomOf="@+id/buttonToggleTimer"
-        app:srcCompat="@drawable/abc_vector_test" />
 
     <ImageButton
         android:id="@+id/buttonToggleTimer"
         android:layout_width="111dp"
         android:layout_height="44dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintStart_toStartOf="@+id/progressBar"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar"
-        app:srcCompat="@drawable/play_icon"/>
+        android:src="@drawable/play_icon" />
+
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="250dp"
         android:layout_height="230dp"
-        android:layout_marginStart="60dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/pb_circular_determinative"
         android:indeterminate="false"
         android:max="100"
         android:progress="50"
         android:progressDrawable="@drawable/pb_circular_determinative"
-        app:layout_constraintStart_toStartOf="@+id/textViewTimerName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTimerName" />
-
 
     <TextView
         android:id="@+id/textViewTimerName"
         android:layout_width="359dp"
         android:layout_height="34dp"
         android:layout_marginTop="28dp"
-        android:text="TextView"
+        android:text="@string/timer_item_name"
+        android:textAlignment="center"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textViewProgressBarHours"
         android:layout_width="132dp"
         android:layout_height="46dp"
-        android:layout_marginStart="60dp"
         android:layout_marginTop="60dp"
         android:gravity="center"
         android:text="TextView"
-        android:textStyle="bold"
         android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
         app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toTopOf="@+id/progressBar"
         tools:text="1h" />
+
     <TextView
         android:id="@+id/textViewProgressBarMinutes"
         android:layout_width="132dp"
@@ -75,23 +68,23 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="TextView"
-        android:textStyle="bold"
         android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="@+id/textViewProgressBarHours"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toBottomOf="@+id/textViewProgressBarHours"
         tools:text="00m" />
 
-    <Button
-        android:id="@+id/delete_timer_button_2"
+    <ImageButton
+        android:id="@+id/buttonSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:backgroundTint="@color/colorWarning"
-        android:text="@string/delete_button"
-        android:onClick="deleteTimer"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_baseline_settings_24"
         app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonBackToMenu" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonToggleTimer" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
