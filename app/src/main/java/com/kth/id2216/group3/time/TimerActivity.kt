@@ -6,16 +6,19 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.kth.id2216.group3.time.MainActivity.Companion.EXTRA_TIMER_ID
 import com.kth.id2216.group3.time.data.entities.Timer
 import com.kth.id2216.group3.time.data.util.TimerState
+import com.kth.id2216.group3.time.ui.editTimer.EditTimerViewModel
 import com.kth.id2216.group3.time.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
@@ -28,18 +31,18 @@ import kotlin.concurrent.timerTask
 class TimerActivity : AppCompatActivity() {
 
     private lateinit var timer: Timer
-    private lateinit var viewModel: HomeViewModel
+    private lateinit var viewModel: EditTimerViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(EditTimerViewModel::class.java)
 
         // Accessing intent data
         val timerId= intent.getIntExtra(EXTRA_TIMER_ID, -1)
         Log.d("WHAT", "$timerId")
         if (timerId != -1) {
-            viewModel.loadTimerById(timerId).observe(this@TimerActivity, {
+            viewModel.getTimer(timerId).observe(this@TimerActivity, {
                 timer = it
                 // Displaying the timers values
                 // Set TimerName
@@ -137,7 +140,7 @@ class TimerActivity : AppCompatActivity() {
             javaTimer.cancel()
 
             runBlocking {
-                viewModel.addTimer(timer)
+                viewModel.updateTimer(timer)
             }
             return
         }
@@ -148,6 +151,13 @@ class TimerActivity : AppCompatActivity() {
         val curPer = Math.floor(((timer.time.toMinutes().toDouble() / timer.goal.toMinutes().toDouble()) * 100))
         Log.d("S", "$curPer")
         pbar.progress = curPer.toInt()
+    }
+
+    fun deleteTimer(view: View?) {
+        runBlocking {
+            viewModel.deleteTimer(timer)
+        }
+        finishAffinity()
     }
 
 }

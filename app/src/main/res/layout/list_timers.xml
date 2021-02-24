@@ -98,6 +98,7 @@
         android:textColor="@color/item_button_start"
         android:textSize="18sp"
         android:visibility="visible"
+        android:onClick="toggleTimer"
         style="?android:attr/borderlessButtonStyle" />
 
     <Button
@@ -111,6 +112,7 @@
         android:textColor="@color/item_button_stop"
         android:textSize="18sp"
         android:visibility="invisible"
+        android:onClick="toggleTimer"
         style="?android:attr/borderlessButtonStyle" />
 
 </RelativeLayout>

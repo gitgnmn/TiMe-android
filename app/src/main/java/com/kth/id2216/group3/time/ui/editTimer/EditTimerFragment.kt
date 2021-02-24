@@ -31,7 +31,7 @@ class EditTimerFragment : Fragment() {
         val receivedId = requireArguments().getInt("timerId")
         val timer = viewModel.getTimer(receivedId)
 
-        val nameEditText: EditText = root.findViewById(R.id.create_timer_name)
+        val nameEditText: EditText = root.findViewById(R.id.edit_timer_name)
         val goalEditText: EditText = root.findViewById(R.id.edit_timer_goal)
 
         timer.observe(viewLifecycleOwner, {

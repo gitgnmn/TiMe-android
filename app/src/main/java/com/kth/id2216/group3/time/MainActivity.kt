@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.ActivityNavigator
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -84,6 +85,8 @@ class MainActivity : AppCompatActivity() {
         val timerId = Integer.parseInt(timerIdView.text.toString())
         val intent = Intent(this@MainActivity, TimerActivity::class.java)
         intent.putExtra(EXTRA_TIMER_ID, timerId)
-        startActivity(intent)
+        val dest = ActivityNavigator(this).createDestination().setIntent(intent)
+        ActivityNavigator(this).navigate(dest, null, null, null)
+
     }
 }
