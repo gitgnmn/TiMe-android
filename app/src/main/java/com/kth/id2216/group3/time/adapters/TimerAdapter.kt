@@ -41,15 +41,13 @@ class TimerAdapter(
         if (timers != null) {
             holder.id.text = timers!![position].id.toString()
             holder.name.text = timers!![position].name
-            holder.goal.text = "${timers!![position].goal.toHours()} h"
-            val duration = timers!![position].time
-            holder.hours.text = "${duration.toHours()} h ${duration.minusHours(duration.toHours()).toMinutes()} m"
+            holder.goal.text = timers!![position].goalFormated()
+            holder.time.text = timers!![position].timeFormated()
             if (timers!![position].categoryId != -1) {
                 holder.categories.text = timers!![position].categoryId.toString()
             } else {
                 holder.categories.text = ""
             }
-
 
             val goal = timers!![position].goal
             val time = timers!![position].time
@@ -81,7 +79,7 @@ class TimerAdapter(
         var id: TextView = view.findViewById(R.id.timer_id)
         var name: TextView = view.findViewById(R.id.item_name)
         var goal: TextView = view.findViewById(R.id.item_goal)
-        var hours: TextView = view.findViewById(R.id.item_hours)
+        var time: TextView = view.findViewById(R.id.item_hours)
         var categories: TextView = view.findViewById(R.id.item_categories)
         var pbar: ProgressBar = view.findViewById(R.id.item_progress)
         var bottomButton: View = view.findViewById(R.id.item_button_divider)
@@ -94,13 +92,13 @@ class TimerAdapter(
                 val btnPause = view.findViewById<Button>(R.id.item_button_stop)
 
                 if(timerIsRunning == 1) {
-                    btnPause.visibility = View.VISIBLE;
-                    btnStart.visibility = View.INVISIBLE;
+                    btnPause.visibility = View.VISIBLE
+                    btnStart.visibility = View.INVISIBLE
                     timerIsRunning = 0
                 }
-                else if(timerIsRunning == 0){
-                    btnPause.visibility = View.INVISIBLE;
-                    btnStart.visibility = View.VISIBLE;
+                else if(timerIsRunning == 0) {
+                    btnPause.visibility = View.INVISIBLE
+                    btnStart.visibility = View.VISIBLE
                     timerIsRunning = 1
                 }
             }

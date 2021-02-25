@@ -1,8 +1,9 @@
 package com.kth.id2216.group3.time.ui.timer
 
 import android.os.Bundle
-import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -16,6 +17,7 @@ import com.kth.id2216.group3.time.data.util.TimerState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
 import kotlin.concurrent.timerTask
+import kotlin.math.floor
 
 @AndroidEntryPoint
 class TimerFragment : Fragment() {
@@ -42,64 +44,57 @@ class TimerFragment : Fragment() {
         val receivedTimerId= requireArguments().getInt(KEY_TIMER_ID)
         viewModel.loadTimerById(receivedTimerId).observe(viewLifecycleOwner, {
 
-                timer = it
+            timer = it
 
-                // Displaying the timers values
-                // Set TimerName
-                val tvTimerName: TextView = root.findViewById(R.id.textViewTimerName)
-                tvTimerName.text = timer.name
+            // Displaying the timers values
+            // Set TimerName
+            val tvTimerName: TextView = root.findViewById(R.id.textViewTimerName)
+            tvTimerName.text = timer.name
 
-                // Set TimerTime
-                val tvTimerHours: TextView = root.findViewById(R.id.textViewProgressBarHours)
-                tvTimerHours.text = "${timer.time.toHours()} h"
+            // Set TimerTime
+            val tvTimerHours: TextView = root.findViewById(R.id.textViewProgressBarTime)
+            tvTimerHours.text = timer.timeFormated()
 
-                val tvTimerMinutes: TextView = root.findViewById(R.id.textViewProgressBarMinutes)
-                tvTimerMinutes.text = "${timer.time.minusHours(timer.time.toHours()).toMinutes()} m"
+            val tvTimerGoal: TextView = root.findViewById(R.id.textViewGoal)
+            tvTimerGoal.text = timer.goalFormated()
 
-                updateProgressBar(root, timer)
+            updateProgressBar(root, timer)
 
-                //set toggle button
-                val btnToggle: ImageButton = root.findViewById(R.id.buttonToggleTimer)
-                btnToggle.setOnClickListener {
-                    toggleTimer(root, timer)
-                    // Change img of button
-                    if(timer.state == TimerState.RUNNING)
-                        btnToggle.setImageResource(R.drawable.pause_icon);
-                    else
-                        btnToggle.setImageResource(R.drawable.play_icon);
-                }
+            //set toggle button
+            val btnToggle: ImageButton = root.findViewById(R.id.buttonToggleTimer)
+            btnToggle.setOnClickListener {
+                toggleTimer(root, timer)
+                // Change img of button
+                if (timer.state == TimerState.RUNNING)
+                    btnToggle.setImageResource(R.drawable.pause_icon)
+                else
+                    btnToggle.setImageResource(R.drawable.play_icon)
+            }
 
-                //set settings button
-                val btnSettings: ImageButton = root.findViewById(R.id.buttonSettings)
-                btnSettings.setOnClickListener {
-                    val bundle = bundleOf(KEY_TIMER_ID to timer.id)
-                    findNavController().navigate(R.id.editTimer, bundle)
-                }
+            //set settings button
+            val btnSettings: ImageButton = root.findViewById(R.id.buttonSettings)
+            btnSettings.setOnClickListener {
+                val bundle = bundleOf(KEY_TIMER_ID to timer.id)
+                findNavController().navigate(R.id.editTimer, bundle)
+            }
         })
         return root
         }
 
 
-    fun toggleTimer(root: View, timer: Timer) {
+    private fun toggleTimer(root: View, timer: Timer) {
 
         timer.toggle()
 
-        if(timer.state == TimerState.RUNNING) {
+        if (timer.state == TimerState.RUNNING) {
             // Start running the timer
             javaTimer.schedule(timerTask {
                 //TODO: change this to plusSeconds
                 timer.time = timer.time.plusMinutes(1)
 
                 // Set TimerTime
-                val tvTimerHours: TextView = root.findViewById(R.id.textViewProgressBarHours) as TextView
-                tvTimerHours.text = "${timer.time.toHours()} h"
-
-                val tvTimerMinutes: TextView = root.findViewById(R.id.textViewProgressBarMinutes) as TextView
-                val minutes = timer.time.toMinutes()
-                if(minutes < 10)
-                    tvTimerMinutes.text = "0${timer.time.minusHours(timer.time.toHours()).toMinutes()} m"
-                else
-                    tvTimerMinutes.text = "${timer.time.minusHours(timer.time.toHours()).toMinutes()} m"
+                val tvTimerHours: TextView = root.findViewById(R.id.textViewProgressBarTime)
+                tvTimerHours.text = timer.timeFormated()
 
                 // Update progressbar
                 updateProgressBar(root, timer)
@@ -120,7 +115,8 @@ class TimerFragment : Fragment() {
 
     private fun updateProgressBar(root: View, timer: Timer) {
         val pbar = root.findViewById<ProgressBar>(R.id.progressBar)
-        val curPer = Math.floor(((timer.time.toMinutes().toDouble() / timer.goal.toMinutes().toDouble()) * 100))
+        val curPer =
+            floor(((timer.time.toMinutes().toDouble() / timer.goal.toMinutes().toDouble()) * 100))
         pbar.progress = curPer.toInt()
     }
 

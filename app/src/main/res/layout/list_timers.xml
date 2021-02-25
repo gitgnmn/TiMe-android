@@ -27,7 +27,7 @@
             android:layout_height="150dp"
             android:indeterminateOnly="false"
             android:progress="40"
-            android:progressDrawable="@drawable/pb_circular_determinative_white" />
+            android:progressDrawable="@drawable/pb_circular_determinative" />
 
         <TextView
             android:id="@+id/item_hours"
@@ -93,10 +93,10 @@
         android:layout_below="@id/item_button_divider"
         android:layout_centerInParent="true"
         android:layout_marginTop="1dp"
-        android:drawableStart="@drawable/play_icon"
         android:text="@string/item_button_text_start"
         android:textColor="@color/item_button_start"
         android:textSize="18sp"
+        android:drawableLeft="@drawable/play_icon"
         android:visibility="visible"
         style="?android:attr/borderlessButtonStyle" />
 
@@ -107,9 +107,9 @@
         android:text="@string/item_button_text_stop"
         android:layout_below="@id/item_button_divider"
         android:layout_centerInParent="true"
-        android:drawableStart="@drawable/pause_icon"
         android:textColor="@color/item_button_stop"
         android:textSize="18sp"
+        android:drawableLeft="@drawable/pause_icon"
         android:visibility="invisible"
         style="?android:attr/borderlessButtonStyle" />
 
