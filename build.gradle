@@ -18,6 +18,7 @@ buildscript {
         desugar_jdk_libs_version = "1.1.1"
         recyclerview_version= "1.1.0"
         preference_version = "1.1.1"
+        commons_lang_version = "3.11"
     }
 
 

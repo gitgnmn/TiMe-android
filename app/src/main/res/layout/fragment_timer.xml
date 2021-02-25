@@ -54,7 +54,7 @@
         android:layout_marginStart="60dp"
         android:gravity="center"
         android:text=""
-        android:textSize="35sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/progressBar"
         app:layout_constraintStart_toStartOf="@+id/progressBar"

@@ -50,6 +50,7 @@ dependencies {
     implementation "com.google.android.material:material:$rootProject.material_version"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayout_version"
 
+    implementation "org.apache.commons:commons-lang3:$rootProject.commons_lang_version"
 
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.kotlinx_version"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.kotlinx_version"

@@ -1,6 +1,7 @@
 package com.kth.id2216.group3.time.data.entities
 
 
+import android.view.View
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey

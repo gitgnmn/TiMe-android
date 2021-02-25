@@ -7,14 +7,14 @@
             android:useLevel="false"
             android:thicknessRatio="20"
             >
-            <solid android:color="@color/colorBackground"/>
+            <solid android:color="@color/white"/>
 
         </shape>
     </item>
     <item android:id="@android:id/progress">
         <rotate
-            android:fromDegrees="90"
-            android:toDegrees="90">
+            android:fromDegrees="270"
+            android:toDegrees="270">
 
             <shape
                 android:shape="ring"
