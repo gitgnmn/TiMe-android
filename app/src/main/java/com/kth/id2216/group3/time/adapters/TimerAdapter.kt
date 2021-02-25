@@ -41,8 +41,9 @@ class TimerAdapter(
         if (timers != null) {
             holder.id.text = timers!![position].id.toString()
             holder.name.text = timers!![position].name
-            holder.goal.text = timers!![position].goalFormated()
-            holder.time.text = timers!![position].timeFormated()
+            holder.goal.text = "${timers!![position].goal.toHours()} h"
+            val duration = timers!![position].time
+            holder.time.text = "${duration.toHours()} h ${duration.minusHours(duration.toHours()).toMinutes()} m"
             if (timers!![position].categoryId != -1) {
                 holder.categories.text = timers!![position].categoryId.toString()
             } else {

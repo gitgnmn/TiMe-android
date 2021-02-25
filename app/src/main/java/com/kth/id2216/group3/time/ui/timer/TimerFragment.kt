@@ -53,10 +53,10 @@ class TimerFragment : Fragment() {
 
             // Set TimerTime
             val tvTimerHours: TextView = root.findViewById(R.id.textViewProgressBarTime)
-            tvTimerHours.text = timer.timeFormated()
+            tvTimerHours.text = "${timer.time.toHours()} h"
 
             val tvTimerGoal: TextView = root.findViewById(R.id.textViewGoal)
-            tvTimerGoal.text = timer.goalFormated()
+            tvTimerGoal.text = "${timer.time.toHours()} h"
 
             updateProgressBar(root, timer)
 
@@ -82,7 +82,7 @@ class TimerFragment : Fragment() {
         }
 
 
-    private fun toggleTimer(root: View, timer: Timer) {
+    fun toggleTimer(root: View, timer: Timer) {
 
         timer.toggle()
 
@@ -94,7 +94,7 @@ class TimerFragment : Fragment() {
 
                 // Set TimerTime
                 val tvTimerHours: TextView = root.findViewById(R.id.textViewProgressBarTime)
-                tvTimerHours.text = timer.timeFormated()
+                tvTimerHours.text = viewModel.timeFormated(timer)
 
                 // Update progressbar
                 updateProgressBar(root, timer)

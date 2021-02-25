@@ -25,4 +25,17 @@ class TimerViewModel @Inject constructor(
         }
     }
 
+    fun goalFormated(timer: Timer): String {
+        return "Goal: ${timer.goal.toHours()}h"
+    }
+
+    fun timeFormated(timer: Timer): String {
+        val h = timer.time.toHours()
+        val m = timer.time.minusHours(timer.time.toHours()).toMinutes()
+        if (m < 1)
+            return "$h h"
+        else
+            return "$h h\n $m m"
+    }
+
 }

@@ -30,21 +30,12 @@ class HomeFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        // Insert example data
-        //val timer1 = Timer(id = 1, name = "Best Course Ever", goal = Duration.ofHours(14))
-        //val timer2 = Timer(id = 2, name = "Example Course", goal = Duration.ofHours(20), time = Duration.ofHours(10))
-        //val timer3 = Timer(id = 3, name = "Building some awesome robots", goal = Duration.ofHours(20), time = Duration.ofHours(1))
 
         val adapter = TimerAdapter(context)
         //get data
         homeViewModel.getAllTimers().observe(viewLifecycleOwner, { timers ->
                 adapter.timers = timers
         })
-
-        // Add example data to db
-        //homeViewModel.addTimer(timer1)
-        //homeViewModel.addTimer(timer2)
-        //homeViewModel.addTimer(timer3)
 
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val recyclerView: RecyclerView  = root.findViewById(R.id.timerRecyclerView)

@@ -37,17 +37,4 @@ data class Timer(
         }
     }
 
-    fun goalFormated(): String {
-        return "Goal: " + goal.toHours()
-    }
-
-    fun timeFormated(): String {
-        val h = time.toHours()
-        val m = time.minusHours(time.toHours()).toMinutes()
-        if (m < 1)
-            return "$h h"
-        else
-            return "$h h\n $m m"
-    }
-
 }
