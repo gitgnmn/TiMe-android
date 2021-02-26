@@ -21,6 +21,9 @@ class TimerRepository @Inject constructor(private val timerDAO: TimerDAO) {
     fun loadAllByIds(timersIds: IntArray) =
             timerDAO.loadAllByIds(timersIds)
 
+    fun loadById(timerId: Int) =
+            timerDAO.loadById(timerId)
+
     suspend fun insertAll(timers: List<Timer>) =
             timerDAO.insertAll(timers)
 

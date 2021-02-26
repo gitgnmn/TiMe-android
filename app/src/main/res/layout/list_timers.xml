@@ -15,6 +15,12 @@
         android:orientation="vertical"
         android:onClick="launchTimerActivity">
 
+        <TextView
+            android:id="@+id/timer_id"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"/>
+
         <ProgressBar
             android:id="@+id/item_progress"
             android:layout_width="match_parent"
@@ -87,10 +93,10 @@
         android:layout_below="@id/item_button_divider"
         android:layout_centerInParent="true"
         android:layout_marginTop="1dp"
-        android:drawableStart="@drawable/play_icon"
         android:text="@string/item_button_text_start"
         android:textColor="@color/item_button_start"
         android:textSize="18sp"
+        android:drawableLeft="@drawable/play_icon"
         android:visibility="visible"
         style="?android:attr/borderlessButtonStyle" />
 
@@ -101,9 +107,9 @@
         android:text="@string/item_button_text_stop"
         android:layout_below="@id/item_button_divider"
         android:layout_centerInParent="true"
-        android:drawableStart="@drawable/pause_icon"
         android:textColor="@color/item_button_stop"
         android:textSize="18sp"
+        android:drawableLeft="@drawable/pause_icon"
         android:visibility="invisible"
         style="?android:attr/borderlessButtonStyle" />
 

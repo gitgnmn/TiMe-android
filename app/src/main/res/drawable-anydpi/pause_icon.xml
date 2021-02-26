@@ -3,9 +3,9 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24"
-    android:tint="#EF5350"
+    android:tint="@color/item_button_stop"
     android:alpha="0.8">
     <path
-        android:fillColor="@android:color/white"
+        android:fillColor="@color/item_button_stop"
         android:pathData="M6,19h4L10,5L6,5v14zM14,5v14h4L18,5h-4z" />
 </vector>

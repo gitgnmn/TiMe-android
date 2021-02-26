@@ -4,11 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kth.id2216.group3.time.R
 import com.kth.id2216.group3.time.data.entities.Timer
+import java.time.Duration
 
 /**
  * Extends the [TimerAdapter] class to [RecyclerView.Adapter]
@@ -37,24 +39,24 @@ class TimerAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //necessary check that the timers array is not null
         if (timers != null) {
-
+            holder.id.text = timers!![position].id.toString()
             holder.name.text = timers!![position].name
-            holder.goal.text = timers!![position].getGoalFormatted()
-            holder.hours.text = timers!![position].getHoursFormatted()
+            holder.goal.text = "${timers!![position].goal.toHours()} h"
+            val duration = timers!![position].time
+            holder.time.text = "${duration.toHours()} h ${duration.minusHours(duration.toHours()).toMinutes()} m"
             if (timers!![position].categoryId != -1) {
                 holder.categories.text = timers!![position].categoryId.toString()
             } else {
                 holder.categories.text = ""
             }
 
-
             val goal = timers!![position].goal
-            val hours = timers!![position].hours
+            val time = timers!![position].time
 
-            if (goal != 0) {
-                val g = goal.toDouble()
-                val h = hours.toDouble()
-                val progress = (h / g) * 100
+            if (goal != Duration.ZERO) {
+                val g = goal.toMillis()
+                val t = time.toMillis()
+                val progress = Math.floor((t.toDouble() / g.toDouble()) * 100)
                 holder.pbar.progress = progress.toInt()
             }
             else {
@@ -75,12 +77,33 @@ class TimerAdapter(
 
     // Initializing the Views
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var name: TextView = view.findViewById<View>(R.id.item_name) as TextView
-        var goal: TextView = view.findViewById<View>(R.id.item_goal) as TextView
-        var hours: TextView = view.findViewById<View>(R.id.item_hours) as TextView
-        var categories: TextView = view.findViewById<View>(R.id.item_categories) as TextView
-        var pbar: ProgressBar = view.findViewById<View>(R.id.item_progress) as ProgressBar
+        var id: TextView = view.findViewById(R.id.timer_id)
+        var name: TextView = view.findViewById(R.id.item_name)
+        var goal: TextView = view.findViewById(R.id.item_goal)
+        var time: TextView = view.findViewById(R.id.item_hours)
+        var categories: TextView = view.findViewById(R.id.item_categories)
+        var pbar: ProgressBar = view.findViewById(R.id.item_progress)
+        var bottomButton: View = view.findViewById(R.id.item_button_divider)
+        var timerIsRunning = 0
 
+        init {
+
+            bottomButton.setOnClickListener {
+                val btnStart = view.findViewById<Button>(R.id.item_button_start)
+                val btnPause = view.findViewById<Button>(R.id.item_button_stop)
+
+                if(timerIsRunning == 1) {
+                    btnPause.visibility = View.VISIBLE
+                    btnStart.visibility = View.INVISIBLE
+                    timerIsRunning = 0
+                }
+                else if(timerIsRunning == 0) {
+                    btnPause.visibility = View.INVISIBLE
+                    btnStart.visibility = View.VISIBLE
+                    timerIsRunning = 1
+                }
+            }
+        }
     }
 
 }

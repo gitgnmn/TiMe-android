@@ -1,4 +1,4 @@
-package com.kth.id2216.group3.time.ui.createtimer
+package com.kth.id2216.group3.time.ui.editTimer
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -10,23 +10,29 @@ import com.kth.id2216.group3.time.data.repositories.CategoryRepository
 import com.kth.id2216.group3.time.data.repositories.TimerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.time.Duration
 import javax.inject.Inject
 
 @HiltViewModel
-class CreateTimerViewModel @Inject constructor(
+class EditTimerViewModel @Inject constructor(
     private val timerRepository: TimerRepository,
     private val categoryRepository: CategoryRepository
-)
-    : ViewModel() {
+) : ViewModel() {
 
-    val timers: LiveData<List<Timer>> = timerRepository.getAll().asLiveData()
     val categories: LiveData<List<Category>> = categoryRepository.getAll().asLiveData()
 
-    fun addTimer(name: String, goal: Duration) {
+    fun getTimer(timerId: Int) : LiveData<Timer> {
+        return timerRepository.loadById(timerId).asLiveData()
+    }
+
+    fun updateTimer(timer: Timer) {
         viewModelScope.launch {
-            val timer = Timer(name = name, goal = goal)
             timerRepository.insert(timer)
+        }
+    }
+
+    fun deleteTimer(timer: Timer) {
+        viewModelScope.launch {
+            timerRepository.delete(timer)
         }
     }
 

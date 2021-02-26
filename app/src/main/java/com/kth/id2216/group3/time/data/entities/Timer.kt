@@ -1,10 +1,13 @@
 package com.kth.id2216.group3.time.data.entities
 
 
+import android.view.View
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.kth.id2216.group3.time.data.util.TimerState
+import java.io.Serializable
+import java.time.Duration
 
 /**
  * Represents a timer
@@ -12,7 +15,7 @@ import com.kth.id2216.group3.time.data.util.TimerState
 @Entity(tableName = "timer_table")
 data class Timer(
         @PrimaryKey(autoGenerate = true)
-        val id: Int = 0,                // temp value; should be auto replaces on creation
+        val id: Int = 0,                // temp value; should be auto replaced on creation
         @ColumnInfo(name="name")
         var name: String,
         @ColumnInfo(name="category_id")
@@ -23,18 +26,16 @@ data class Timer(
         val created: Long = System.currentTimeMillis(),
         @ColumnInfo(name = "last_used")
         var lastUsed: Long = created,
-        var goal: Int = 0,
-        var hours: Int = 0
-) {
-        fun getGoalFormatted(): String {
-                val goalM = goal%1
-                val goalH = goal - goalM
-                return "$goalH h $goalM m"
-        }
+        var goal: Duration = Duration.ZERO,
+        var time: Duration = Duration.ZERO
+) : Serializable {
 
-        fun getHoursFormatted(): String {
-                val hoursM = hours % 1
-                val hoursH = hours - hoursM
-                return "$hoursH h $hoursM m"
+    fun toggle() {
+        if (this.state != TimerState.RUNNING) {
+            this.state = TimerState.RUNNING
+        } else {
+            this.state = TimerState.STOPPED
         }
+    }
+
 }
