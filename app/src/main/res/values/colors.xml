@@ -15,4 +15,7 @@
     <color name="item_button_start">#A7F84A</color>
     <color name="item_button_stop">#EF5350</color>
     <color name="colorWarning">#FF0000</color>
+    <color name="materialButtonBg">@color/purple_500</color>
+    <color name="materialButtonTxt">@color/white</color>
+    <color name="dialogBg">#83000000</color>
 </resources>

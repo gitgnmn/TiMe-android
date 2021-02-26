@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="10dp"
+        android:padding="@dimen/DialogPadding"
         app:layout_constraintBottom_toTopOf="@+id/category_list"
         app:layout_constraintTop_toTopOf="@+id/category_list">
 
@@ -22,29 +22,20 @@
             android:id="@+id/edit_timer_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="4dp"
             android:hint="@string/create_timer_name_hint"
             android:importantForAutofill="no"
             android:inputType="text"
             android:textColor="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.449"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/edit_timer_goal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
             android:hint="@string/create_timer_goal_hint"
             android:importantForAutofill="no"
             android:inputType="number"
             android:textColor="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_timer_name" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -52,12 +43,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
             android:hint="@string/category"
-            app:layout_constraintBottom_toTopOf="@+id/edit_timer_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/edit_timer_goal"
             app:layout_constraintTop_toBottomOf="@+id/edit_timer_goal">
 
             <AutoCompleteTextView
@@ -71,33 +57,21 @@
             android:id="@+id/edit_timer_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/colorPrimary"
             android:gravity="start|center_vertical"
-            android:paddingHorizontal="50dp"
             android:text="@string/save_changes_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/delete_timer_button"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/category_list" />
 
         <Button
             android:id="@+id/delete_timer_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:backgroundTint="@color/colorWarning"
             android:gravity="center|center_vertical"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:paddingHorizontal="30dp"
             android:text="@string/delete_button"
 
-            app:cornerRadius="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category_list"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/category_list" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

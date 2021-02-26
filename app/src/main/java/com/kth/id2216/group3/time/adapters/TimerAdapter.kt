@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -83,27 +82,29 @@ class TimerAdapter(
         var time: TextView = view.findViewById(R.id.item_hours)
         var categories: TextView = view.findViewById(R.id.item_categories)
         var pbar: ProgressBar = view.findViewById(R.id.item_progress)
-        var bottomButton: View = view.findViewById(R.id.item_button_divider)
+        //var bottomButton: View = view.findViewById(R.id.item_button_divider)
         var timerIsRunning = 0
 
-        init {
+        /*
+            init {
 
-            bottomButton.setOnClickListener {
-                val btnStart = view.findViewById<Button>(R.id.item_button_start)
-                val btnPause = view.findViewById<Button>(R.id.item_button_stop)
+                bottomButton.setOnClickListener {
+                    val btnStart = view.findViewById<Button>(R.id.item_button_start)
+                    val btnPause = view.findViewById<Button>(R.id.item_button_stop)
 
-                if(timerIsRunning == 1) {
-                    btnPause.visibility = View.VISIBLE
-                    btnStart.visibility = View.INVISIBLE
-                    timerIsRunning = 0
-                }
-                else if(timerIsRunning == 0) {
-                    btnPause.visibility = View.INVISIBLE
-                    btnStart.visibility = View.VISIBLE
-                    timerIsRunning = 1
+                    if(timerIsRunning == 1) {
+                        btnPause.visibility = View.VISIBLE
+                        btnStart.visibility = View.INVISIBLE
+                        timerIsRunning = 0
+                    }
+                    else if(timerIsRunning == 0) {
+                        btnPause.visibility = View.INVISIBLE
+                        btnStart.visibility = View.VISIBLE
+                        timerIsRunning = 1
+                    }
                 }
             }
-        }
+        */
     }
 
 }
