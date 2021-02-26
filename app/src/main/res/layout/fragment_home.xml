@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <TextView
+        android:id="@+id/homeGreaterText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/create_a_new_timer"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColor="@color/cardview_shadow_start_color"
+        android:visibility="invisible" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/timerRecyclerView"
         android:layout_width="match_parent"
@@ -22,18 +32,11 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_marginStart="360dp"
-        android:layout_marginBottom="60dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_baseline_add_24"
+        android:layout_margin="20dp"
+        app:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/timerRecyclerView"
-        app:layout_constraintTop_toTopOf="@+id/timerRecyclerView"
-        app:layout_constraintVertical_bias="1.0"
-        app:borderWidth="0dp"
-        android:src="@drawable/ic_baseline_add_24"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="VectorDrawableCompat"
+        android:contentDescription="@string/create_new_timer" />
 </androidx.constraintlayout.widget.ConstraintLayout>
