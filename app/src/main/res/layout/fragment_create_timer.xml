@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#83000000"
+    android:background="@color/dialogBg"
     android:gravity="center|top"
     tools:context=".ui.createtimer.CreateTimerFragment" >
 
@@ -12,13 +12,13 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="@dimen/DialogPadding"
+        android:gravity="end">
 
         <EditText
             android:id="@+id/create_timer_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
             android:hint="@string/create_timer_name_hint"
             android:inputType="text"
             android:textColor="@android:color/darker_gray"
@@ -28,7 +28,6 @@
             android:id="@+id/create_timer_goal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:inputType="number"
             android:hint="@string/create_timer_goal_hint"
             android:textColor="@android:color/darker_gray"
@@ -50,15 +49,10 @@
 
         <Button
             android:id="@+id/create_timer_button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:background="@color/colorPrimary"
             android:gravity="center|center_vertical"
             android:text="@string/create_button" />
-
-
 
     </LinearLayout>
 </LinearLayout>

@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.kth.id2216.group3.time.R
 import com.kth.id2216.group3.time.adapters.TimerAdapter
-import com.kth.id2216.group3.time.data.entities.Timer
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.Duration
 
 /**
  * Fragment handling the list of timers in the home
@@ -34,11 +32,11 @@ class HomeFragment : Fragment() {
         val adapter = TimerAdapter(context)
         //get data
         homeViewModel.getAllTimers().observe(viewLifecycleOwner, { timers ->
-                adapter.timers = timers
+            adapter.timers = timers
         })
 
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val recyclerView: RecyclerView  = root.findViewById(R.id.timerRecyclerView)
+        val recyclerView: RecyclerView = root.findViewById(R.id.timerRecyclerView)
 
         // Setting the layout as Staggered Grid for vertical orientation
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
@@ -47,10 +45,17 @@ class HomeFragment : Fragment() {
         // Sending reference and data to Adapter
         recyclerView.adapter = adapter
 
+        /*
+            homeViewModel.getAllTimers().observe(viewLifecycleOwner, {
+                if (it.isEmpty()) {
+                    val greaterText: TextView = root.findViewById(R.id.homeGreaterText)
+                    greaterText.visibility = View.VISIBLE
+                }
+         */
+
         val navController = findNavController()
         val fab: FloatingActionButton = root.findViewById(R.id.fab)
         fab.setOnClickListener { navController.navigate(R.id.createTimer) }
-
 
         return root
     }

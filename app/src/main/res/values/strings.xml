@@ -43,4 +43,8 @@
     <string name="message_name_category">Please enter a category name</string>
     <string name="save_changes_button">Save changes</string>
     <string name="delete_button">Delete</string>
+    <string name="create_new_timer">Create New Timer</string>
+    <string name="create_a_new_timer">Create A New Timer!</string>
+    <string name="edit_timer">Edit Timer</string>
+    <string name="start_timer">Start Timer</string>
 </resources>

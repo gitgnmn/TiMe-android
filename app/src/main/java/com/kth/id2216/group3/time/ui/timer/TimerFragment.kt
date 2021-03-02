@@ -1,8 +1,10 @@
 package com.kth.id2216.group3.time.ui.timer
 
 import android.os.Bundle
-import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -45,39 +47,42 @@ class TimerFragment : Fragment() {
         val receivedTimerId= requireArguments().getInt(KEY_TIMER_ID)
         viewModel.loadTimerById(receivedTimerId).observe(viewLifecycleOwner, {
 
-                timer = it
+            timer = it
 
-                // Displaying the timers values
-                // Set TimerName
-                val tvTimerName: TextView = root.findViewById(R.id.textViewTimerName)
-                tvTimerName.text = timer.name
+            // Displaying the timers values
+            // Set TimerName
+            val tvTimerName: TextView = root.findViewById(R.id.textViewTimerName)
+            tvTimerName.text = timer.name
 
-                // Set TimerTime
-                val tvTimerHours: TextView = root.findViewById(R.id.textViewProgressBarTime)
-                tvTimerHours.text = timeFormated(timer)
+            // Set TimerTime
+            val tvTimerHours: TextView = root.findViewById(R.id.textViewProgressBarTime)
+            tvTimerHours.text = timeFormated(timer)
 
-                val tvTimerGoal: TextView = root.findViewById(R.id.textViewGoal)
-                tvTimerGoal.text = goalFormated(timer)
+            val tvTimerGoal: TextView = root.findViewById(R.id.textViewGoal)
+            tvTimerGoal.text = goalFormated(timer)
 
-                updateProgressBar(root, timer)
+            updateProgressBar(root, timer)
 
-                //set toggle button
-                val btnToggle: ImageButton = root.findViewById(R.id.buttonToggleTimer)
-                btnToggle.setOnClickListener {
-                    toggleTimer(root, timer)
-                    // Change img of button
-                    if(timer.state == TimerState.RUNNING)
-                        btnToggle.setImageResource(R.drawable.pause_icon);
-                    else
-                        btnToggle.setImageResource(R.drawable.play_icon);
+            //set toggle button
+            val btnToggle: Button = root.findViewById(R.id.buttonToggleTimer)
+            btnToggle.setOnClickListener {
+                toggleTimer(root, timer)
+                // Change img of button
+                if (timer.state == TimerState.RUNNING) {
+                    btnToggle.text = "Pause Timer"
+                    btnToggle.setCompoundDrawablesWithIntrinsicBounds(R.drawable.pause_icon, 0, 0, 0)
+                } else {
+                    btnToggle.text = "Start Timer"
+                    btnToggle.setCompoundDrawablesWithIntrinsicBounds(R.drawable.play_icon, 0, 0, 0)
                 }
+            }
 
-                //set settings button
-                val btnSettings: ImageButton = root.findViewById(R.id.buttonSettings)
-                btnSettings.setOnClickListener {
-                    val bundle = bundleOf(KEY_TIMER_ID to timer.id)
-                    findNavController().navigate(R.id.editTimer, bundle)
-                }
+            //set settings button
+            val btnSettings: ImageButton = root.findViewById(R.id.buttonSettings)
+            btnSettings.setOnClickListener {
+                val bundle = bundleOf(KEY_TIMER_ID to timer.id)
+                findNavController().navigate(R.id.editTimer, bundle)
+            }
         })
         return root
         }

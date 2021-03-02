@@ -1,17 +1,13 @@
 package com.kth.id2216.group3.time
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.ActivityNavigator
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -51,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -64,8 +59,6 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
-
 
     fun launchTimerActivity(view: View) {
         val timerIdView: TextView = view.findViewById(R.id.timer_id)
