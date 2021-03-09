@@ -97,6 +97,10 @@ class TimerFragment : Fragment() {
             //set settings button
             val btnSettings: ImageButton = root.findViewById(R.id.buttonSettings)
             btnSettings.setOnClickListener {
+                // Stop timer when switching view
+                if(timer.state == TimerState.RUNNING)
+                    toggleTimer(root, timer)
+
                 val bundle = bundleOf(KEY_TIMER_ID to timer.id)
                 findNavController().navigate(R.id.editTimer, bundle)
             }
